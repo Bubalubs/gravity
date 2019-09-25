@@ -1,0 +1,13 @@
+{
+    "name": "bubalubs/laravel-gravity",
+    "description": "A Flexible Laravel CMS",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Glaysher",
+            "email": "adamglaysher@gmail.com"
+        }
+    ],
+    "require": {}
+}
