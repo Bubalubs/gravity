@@ -23,6 +23,8 @@ class LaravelGravityServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->publishes([
+            __DIR__ . '/gravity.php' => config_path('gravity.php'),
+        ]);
     }
 }

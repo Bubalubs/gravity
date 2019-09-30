@@ -9,5 +9,14 @@
             "email": "adamglaysher@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "illuminate/support": "^6.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bubalubs\\LaravelGravity\\LaravelGravityServiceProvider"
+            ]
+        }
+    }
 }
