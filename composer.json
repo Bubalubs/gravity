@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "illuminate/support": "^6.0"
+        "illuminate/support": "^6.0",
+        "intervention/image": "^2.5"
     },
     "extra": {
         "laravel": {

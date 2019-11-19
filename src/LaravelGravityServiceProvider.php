@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Bubalubs\LaravelGravity\PageContent;
+use Bubalubs\LaravelGravity\Page;
 
 class LaravelGravityServiceProvider extends ServiceProvider
 {
@@ -38,15 +39,23 @@ class LaravelGravityServiceProvider extends ServiceProvider
         if (Schema::hasTable('page_content')) {
             view()->composer('*', function ($view) {
                 $content = PageContent::getPageContent($view->getName());
-                
-                $data = [];
 
-                foreach ($content as $key => $value) {
-                    $data[$key] = $value;
+                if ($content) {
+                    $data = [];
+
+                    foreach ($content as $field => $value) {
+                        $data[$field] = $value;
+                    }
+                    
+                    $view->with($data);
                 }
-                
-                $view->with($data);
             });
+            
+            // view()->composer('/admin/*', function ($view) {
+            //     $pages = Page::all();
+
+            //     $view->with(compact('pages'));
+            // });
         }
     }
 }

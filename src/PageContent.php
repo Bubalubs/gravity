@@ -3,50 +3,68 @@
 namespace Bubalubs\LaravelGravity;
 
 use Illuminate\Database\Eloquent\Model;
-use Bubalubs\LaravelGravity\PageKey;
+use Bubalubs\LaravelGravity\PageField;
+use Bubalubs\LaravelGravity\Page;
 
 class PageContent extends Model
 {
     protected $table = 'page_content';
 
-    public static function updateContent($page, $key, $content)
+    public function field()
     {
-        $key = PageKey::where('name', $key)->firstOrFail();
+        return $this->belongsTo('Bubalubs\LaravelGravity\PageField', 'page_field_id');
+    }
 
-        $field = self::where('page', $page)
-            ->where('key_id', $key->id)
+    public function page()
+    {
+        return $this->belongsTo('Bubalubs\LaravelGravity\Page');
+    }
+
+    public static function updateContent(Page $page, PageField $field, $content)
+    {
+        $pageContent = self::where('page_id', $page->id)
+            ->where('page_field_id', $field->id)
             ->first();
 
-        if ($field) {
-            $field->content = $content;
+        if ($pageContent) {
+            $pageContent->content = $content;
 
-            return $field->save();
+            return $pageContent->save();
         }
 
-        $field = new self();
+        $pageContent = new self();  
 
-        $field->page = $page;
-        $field->key = $key->id;
-        $field->content = $content;
+        $pageContent->page_id = $page->id;
+        $pageContent->page_field_id = $field->id;
+        $pageContent->content = $content;
 
-        return $field->save();
+        return $pageContent->save();
     }
 
-    public static function getContent($page, $key)
+    public static function getContent($pageName, $field)
     {
-        $key = PageKey::where('name', $key)->firstOrFail();
+        $field = PageField::where('name', $field)->firstOrFail();
 
-        return self::where('page', $page)
-            ->where('key_id', $key->id)
+        $page = Page::where('name', $pageName)->firstOrFail();
+
+        return self::where('page_id', $page->id)
+            ->where('page_field_id', $field->id)
             ->first();
     }
 
-    public static function getPageContent($page)
+    public static function getPageContent($pageName)
     {
-        return self::where('page', $page)
+        $page = Page::where('name', $pageName)->first();
+
+        if (!$page) {
+            return false;
+        }
+
+        return self::where('page_id', $page->id)
+            ->with('field')
             ->get()
-            ->mapWithKeys(function ($field) {
-                return [$field['key'] => $field['content']];
+            ->mapWithKeys(function ($pageContent) {
+                return [$pageContent['field']['name'] => $pageContent['content']];
             });
     }
 }

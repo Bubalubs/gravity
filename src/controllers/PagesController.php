@@ -24,6 +24,15 @@ class PagesController extends Controller
 
         Page::create($request->all());
 
-        return redirect('/admin/pages');
-    }    
+        return redirect('/admin/pages')->with('success', 'Successfully created page');
+    }
+
+    public function delete($id)
+    {
+        $page = Page::findOrFail($id);
+
+        $page->delete();
+
+        return redirect('/admin/pages')->with('success', 'Successfully deleted page');
+    }
 }

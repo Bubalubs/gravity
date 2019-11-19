@@ -8,9 +8,9 @@ class Page extends Model
 {
     protected $fillable = ['name'];
 
-    public function keys()
+    public function fields()
     {
-        return $this->hasMany('Bubalubs\LaravelGravity\PageKey');
+        return $this->hasMany('Bubalubs\LaravelGravity\PageField');
     }
 
     public function getDisplayNameAttribute()

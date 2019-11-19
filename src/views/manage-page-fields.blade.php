@@ -21,12 +21,29 @@
                         @include('laravel-gravity::partials.sidebar')
                     </div>
                     <div class="column is-10">
-                        <h4 class="title is-4">New Page</h4>
+                        <a href="/admin/pages" class="button is-info">Back</a>
 
-                        <form method="post" action="/admin/pages/create">
+                        <hr>
+
+                        <h4 class="title is-4">New Field</h4>
+
+                        <form method="post" action="/admin/pages/{{ $page->name }}/fields/create">
                             <div class="field">
                                 <div class="control">
                                     <input class="input" name="name" type="text" placeholder="Name">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="control">
+                                    <div class="select">
+                                        <select name="type">
+                                            <option value="single-line-text">Single Line Text</option>
+                                            <option value="multi-line-text">Multi Line Text</option>
+                                            <option value="image">Image</option>
+                                            <option value="color">Color</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
@@ -34,24 +51,32 @@
                         </form>
 
                         <hr>
-                        
-                        <h4 class="title is-4">Manage Pages</h4>
+
+                        <h4 class="title is-4">Manage Fields</h4>
+
+                        <h6 class="subtitle is-6">Page: {{ $page->name }}</h6>
 
                         <table class="table is-fullwidth is-hoverable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th class="has-text-right">Options</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                @foreach ($pages as $page)
+                                @foreach ($page->fields as $field)
                                     <tr>
                                         <td>
-                                            <p class="is-size-4">{{ $page->displayName }}</p>
+                                            <p class="is-size-4">{{ $field->displayName }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="is-size-4">{{ $field->displayType }}</p>
                                         </td>
                                         <td>
                                             <div class="field is-grouped is-grouped-right">
                                                 <p class="control">
-                                                    <a href="/admin/pages/{{ $page->name }}/fields" class="button">Manage Fields</a>
-                                                </p>
-
-                                                <p class="control">
-                                                    <form method="post" action="/admin/pages/{{ $page->id }}/delete">
+                                                    <form method="post" action="/admin/pages/{{ $page->name }}/fields/{{ $field->id }}/delete">
                                                         <input type="hidden" name="_method" value="delete">
                                                         
                                                         <button type="submit" class="button is-danger">Delete</button>

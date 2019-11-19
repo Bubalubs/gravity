@@ -16,7 +16,7 @@ class CreatePageContentTable extends Migration
         Schema::create('page_content', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('page_id');
-            $table->unsignedInteger('key_id');
+            $table->unsignedInteger('page_field_id');
             $table->text('content')->nullable();
             $table->timestamps();
 
@@ -24,8 +24,8 @@ class CreatePageContentTable extends Migration
                 ->references('id')->on('pages')
                 ->onDelete('cascade');
 
-            $table->foreign('key_id')
-                ->references('id')->on('page_keys')
+            $table->foreign('page_field_id')
+                ->references('id')->on('page_fields')
                 ->onDelete('cascade');
         });
     }

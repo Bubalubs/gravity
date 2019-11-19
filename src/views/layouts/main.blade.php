@@ -21,7 +21,7 @@
                         @include('laravel-gravity::partials.sidebar')
                     </div>
                     <div class="column is-10">
-                        
+                        @yield('content')
                     </div>
                 </div>
             </div>

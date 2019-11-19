@@ -21,12 +21,50 @@
                         @include('laravel-gravity::partials.sidebar')
                     </div>
                     <div class="column is-10">
-                        Edit Page {{ $page }}
-                    </div>
+                        <h4 class="title is-4">Edit Page</h4>
 
-                    @foreach($page->keys as $key)
-                        {{ $key->name }}
-                    @endforeach
+                        <h6 class="subtitle is-6">Page: {{ $page->name }}</h6>
+
+                        <form method="post" action="/admin/pages/{{ $page->name }}/update" enctype="multipart/form-data">
+                            @foreach($page->fields as $field)
+                                @if ($field->type == 'single-line-text')
+                                    <div class="field">
+                                        <label class="label">{{ $field->displayName }}</label>
+                                        <div class="control">
+                                            <input class="input" name="{{ $field->name }}" type="text" placeholder="{{ $field->displayName }}" value="{{ $data[$field->name] ?? '' }}">
+                                        </div>
+                                    </div>
+                                @endif
+                                @if ($field->type == 'multi-line-text')
+                                    <div class="field">
+                                        <label class="label">{{ $field->displayName }}</label>
+                                        <div class="control">
+                                            <textarea class="textarea" name="{{ $field->name }}" placeholder="{{ $field->displayName }}">{{ $data[$field->name] ?? '' }}</textarea>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if ($field->type == 'color')
+                                    <div class="field">
+                                        <label class="label">{{ $field->displayName }}</label>
+                                        <div class="control">
+                                            <input class="input" name="{{ $field->name }}" type="text" placeholder="{{ $field->displayName }}" value="{{ $data[$field->name] ?? '' }}">
+                                        </div>
+                                    </div>
+                                @endif
+                                @if ($field->type == 'image')
+                                    <div class="field">
+                                        <label class="label">{{ $field->displayName }}</label>
+                                        <div class="control">
+                                            <input class="input" name="{{ $field->name }}" type="file">
+                                        </div>
+                                        {{ $data[$field->name] ?? '' }}
+                                    </div>
+                                @endif
+                            @endforeach
+
+                            <button type="submit" class="button is-primary">Update</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
