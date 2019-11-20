@@ -13,6 +13,11 @@
         "illuminate/support": "^6.0",
         "intervention/image": "^2.5"
     },
+    "autoload": {
+        "psr-4": {
+            "Bubalubs\\LaravelGravity\\": "src"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
