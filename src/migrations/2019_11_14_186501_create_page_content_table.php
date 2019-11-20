@@ -19,14 +19,6 @@ class CreatePageContentTable extends Migration
             $table->unsignedInteger('page_field_id');
             $table->text('content')->nullable();
             $table->timestamps();
-
-            $table->foreign('page_id')
-                ->references('id')->on('pages')
-                ->onDelete('cascade');
-
-            $table->foreign('page_field_id')
-                ->references('id')->on('page_fields')
-                ->onDelete('cascade');
         });
     }
 

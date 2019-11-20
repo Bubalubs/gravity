@@ -17,12 +17,8 @@ class CreatePageFieldsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('page_id');
             $table->string('name');
-            $table->string('type')->default('text');
+            $table->string('type');
             $table->timestamps();
-
-            $table->foreign('page_id')
-                ->references('id')->on('pages')
-                ->onDelete('cascade');
         });
     }
 
