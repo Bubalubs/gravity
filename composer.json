@@ -10,12 +10,13 @@
         }
     ],
     "require": {
+        "php": ">=7.2",
         "illuminate/support": "^6.0",
         "intervention/image": "^2.5"
     },
     "autoload": {
         "psr-4": {
-            "Bubalubs\\LaravelGravity\\": "src"
+            "Bubalubs\\LaravelGravity\\": "src/"
         }
     },
     "extra": {
