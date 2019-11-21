@@ -100,7 +100,7 @@ class PageController extends Controller
 
                     if ($mimeType == 'image/jpeg') {
                         $path = $file->store('public/page-content/' . $page->name);
-                        
+
                         $imageProcessor = new ImageProcessor(str_replace('public/', '', $path));
                         $imageProcessor->process();
                     }
@@ -113,6 +113,6 @@ class PageController extends Controller
             }
         }
 
-        return redirect('/admin/pages/' . $name);
+        return redirect('/admin/pages/' . $name)->with('success', 'Successfully updated page');
     }
 }
