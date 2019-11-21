@@ -41,10 +41,10 @@ class LaravelGravityServiceProvider extends ServiceProvider
                 $content = PageContent::getPageContent($view->getName());
 
                 if ($content) {
-                    $data = [];
+                    $data['content'] = [];
 
                     foreach ($content as $field => $value) {
-                        $data[$field] = $value;
+                        $data['content'][$field] = $value;
                     }
                     
                     $view->with($data);

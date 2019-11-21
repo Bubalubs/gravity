@@ -14,11 +14,11 @@ class PageField extends Model
 
     public function getDisplayNameAttribute()
     {
-        return ucwords($this->name);
+        return ucwords(str_replace('-', ' ', $this->name));
     }
 
     public function getDisplayTypeAttribute()
     {
-        return ucwords($this->type);
+        return ucwords(str_replace('-', ' ', $this->type));
     }
 }

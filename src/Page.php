@@ -15,6 +15,6 @@ class Page extends Model
 
     public function getDisplayNameAttribute()
     {
-        return ucwords($this->name);
+        return ucwords(str_replace('-', ' ', $this->name));
     }
 }

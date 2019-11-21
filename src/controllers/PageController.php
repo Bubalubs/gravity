@@ -3,6 +3,7 @@
 namespace Bubalubs\LaravelGravity\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Bubalubs\LaravelGravity\Page;
 use Bubalubs\LaravelGravity\PageField;
 use Bubalubs\LaravelGravity\PageContent;
@@ -50,7 +51,7 @@ class PageController extends Controller
     public function createField($name, Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|alpha_dash|max:60',
+            'name' => 'required|max:60|unique:page_fields,name',
             'type' => 'required|in:single-line-text,multi-line-text,image,color'
         ]);
 
@@ -60,6 +61,7 @@ class PageController extends Controller
 
         $data = $request->all();
 
+        $data['name'] = Str::slug($data['name'], '-');
         $data['page_id'] = $page->id;
 
         PageField::create($data);
@@ -87,7 +89,7 @@ class PageController extends Controller
     {
         $page = Page::where('name', $name)->firstOrFail();
 
-        foreach ($request->all() as $key => $content) {
+        foreach ($request->except('_token') as $key => $content) {
             $field = PageField::where('name', $key)->firstOrFail();
 
             if ($field->type == 'image') {
@@ -98,10 +100,8 @@ class PageController extends Controller
 
                     if ($mimeType == 'image/jpeg') {
                         $path = $file->store('public/page-content/' . $page->name);
-
-                        dd('storage/' . $path);
-
-                        $imageProcessor = new ImageProcessor('storage/' . $path);
+                        
+                        $imageProcessor = new ImageProcessor(str_replace('public/', '', $path));
                         $imageProcessor->process();
                     }
 

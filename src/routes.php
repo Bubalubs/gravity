@@ -1,6 +1,10 @@
 <?php
 
-Route::prefix('admin')->namespace('Bubalubs\LaravelGravity\Controllers')->group(function () {
+Route::prefix('admin')
+    ->namespace('Bubalubs\LaravelGravity\Controllers')
+    ->middleware('web')
+    ->group(function () 
+{
     Route::get('/', 'DashboardController@view');
     Route::get('pages/{page}/fields', 'PageController@editFields');
     Route::get('pages/{page}', 'PageController@edit');

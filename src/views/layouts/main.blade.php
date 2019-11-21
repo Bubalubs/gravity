@@ -8,19 +8,27 @@
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     </head>
     <body>
+        <section class="hero is-dark is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        {{ config('app.name') }}
+                    </h1>
+                    <h2 class="subtitle">
+                        Admin
+                    </h2>
+                </div>
+            </div>
+        </section>
         <section class="section">
             <div class="container">
-                <h2 class="title is-2">
-                    <a href="/admin">
-                        {{ config('app.name') }}
-                    </a>
-                </h2>
-
                 <div class="columns">
                     <div class="column is-2">
                         @include('laravel-gravity::partials.sidebar')
                     </div>
                     <div class="column is-10">
+                        @include('laravel-gravity::partials.alerts')
+
                         @yield('content')
                     </div>
                 </div>

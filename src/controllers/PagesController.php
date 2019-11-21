@@ -3,6 +3,7 @@
 namespace Bubalubs\LaravelGravity\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Bubalubs\LaravelGravity\Page;
 
 class PagesController extends Controller
@@ -19,10 +20,14 @@ class PagesController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|alpha_dash|max:60'
+            'name' => 'required|max:60|unique:pages,name'
         ]);
 
-        Page::create($request->all());
+        $data = $request->all();
+
+        $data['name'] = Str::slug($data['name'], '-');
+
+        Page::create($data);
 
         return redirect('/admin/pages')->with('success', 'Successfully created page');
     }
