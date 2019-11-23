@@ -20,6 +20,12 @@
     <h4 class="title is-4">Manage Pages</h4>
 
     <table class="table is-fullwidth is-hoverable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th class="has-text-right">Options</th>
+            </tr>
+        </thead>
         <tbody>
             @foreach ($pages as $page)
                 <tr>

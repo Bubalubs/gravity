@@ -32,10 +32,14 @@ class LaravelGravityServiceProvider extends ServiceProvider
             __DIR__ . '/views' => resource_path('views/vendor/laravel-gravity')
         ]);
 
+        $this->publishes([
+            __DIR__ . '/resources/dist' => public_path('vendor/laravel-gravity'),
+        ], 'public');
+
         $this->loadMigrationsFrom(__DIR__ . '/migrations');
         $this->loadViewsFrom(__DIR__ . '/views', 'laravel-gravity');
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
-        
+
         if (Schema::hasTable('page_content')) {
             view()->composer('*', function ($view) {
                 $content = PageContent::getPageContent($view->getName());
