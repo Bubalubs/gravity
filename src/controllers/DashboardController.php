@@ -9,8 +9,6 @@ class DashboardController extends Controller
 {
     public function view()
     {
-        $pages = Page::all();
-
-        return view('laravel-gravity::dashboard')->with(compact('pages'));
+        return view('laravel-gravity::dashboard');
     }
 }

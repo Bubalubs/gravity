@@ -3,7 +3,7 @@
 @section('content')
     <h4 class="title is-4">Edit Page</h4>
 
-    <h6 class="subtitle is-6">{{ $page->name }}</h6>
+    <h6 class="subtitle is-6">{{ $page->displayName }}</h6>
 
     <form method="post" action="/admin/pages/{{ $page->name }}/update" enctype="multipart/form-data">
         @csrf
@@ -35,11 +35,23 @@
             @endif
             @if ($field->type == 'image')
                 <div class="field">
-                    <label class="label">{{ $field->displayName }}</label>
-                    <div class="control">
-                        <input class="input" name="{{ $field->name }}" type="file">
+                    <div class="columns">
+                        <div class="column">
+                            <label class="label">{{ $field->displayName }}</label>
+                            <div class="control">
+                                <input class="input" name="{{ $field->name }}" type="file">
+                            </div>
+                        </div>
+                        @if (isset($data[$field->name]))
+                            <div class="column">
+                                <h6 class="title is-6">Current</h6>
+
+                                <a href="{{ $data[$field->name] ?? '' }}" target="_blank">
+                                    <img src="{{ $data[$field->name] ?? '' }}" alt="{{ $data[$field->name] ?? '' }}" style="max-height:100px">
+                                </a>
+                            </div>
+                        @endif
                     </div>
-                    {{ $data[$field->name] ?? '' }}
                 </div>
             @endif
         @endforeach

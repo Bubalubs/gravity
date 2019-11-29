@@ -100,12 +100,16 @@ class PageController extends Controller
 
                     if ($mimeType == 'image/jpeg') {
                         $path = $file->store('public/page-content/' . $page->name);
+                        
+                        $path = str_replace('public', '', $path);
 
-                        $imageProcessor = new ImageProcessor(str_replace('public/', '', $path));
+                        $fullServerPath = public_path('/storage' . $path);
+
+                        $imageProcessor = new ImageProcessor($fullServerPath);
                         $imageProcessor->process();
                     }
 
-                    PageContent::updateContent($page, $field, $path);
+                    PageContent::updateContent($page, $field, '/storage' . $path);
                 }
 
             } else {

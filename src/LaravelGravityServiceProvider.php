@@ -55,7 +55,7 @@ class LaravelGravityServiceProvider extends ServiceProvider
                 }
             });
             
-            view()->composer('/admin/*', function ($view) {
+            view()->composer('laravel-gravity::partials.sidebar', function ($view) {
                 $pages = Page::all();
 
                 $view->with(compact('pages'));
