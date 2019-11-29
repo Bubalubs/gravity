@@ -24,6 +24,10 @@
   "devDependencies": {
     "bulma": "^0.8.0",
     "cross-env": "^6.0.3",
-    "laravel-mix": "^5.0.0"
-  }
+    "laravel-mix": "^5.0.0",
+    "tiptap": "^1.26.4",
+    "tiptap-extensions": "^1.28.4",
+    "vue": "^2.6.10"
+  },
+  "dependencies": {}
 }

@@ -55,11 +55,11 @@ class LaravelGravityServiceProvider extends ServiceProvider
                 }
             });
             
-            // view()->composer('/admin/*', function ($view) {
-            //     $pages = Page::all();
+            view()->composer('/admin/*', function ($view) {
+                $pages = Page::all();
 
-            //     $view->with(compact('pages'));
-            // });
+                $view->with(compact('pages'));
+            }); 
         }
     }
 }

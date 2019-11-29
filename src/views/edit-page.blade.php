@@ -21,7 +21,7 @@
                 <div class="field">
                     <label class="label">{{ $field->displayName }}</label>
                     <div class="control">
-                        <textarea class="textarea" name="{{ $field->name }}" placeholder="{{ $field->displayName }}">{{ $data[$field->name] ?? '' }}</textarea>
+                        <text-editor name="{{ $field->name }}" :value="'{{ $data[$field->name] ?? '' }}'"></text-editor>
                     </div>
                 </div>
             @endif
