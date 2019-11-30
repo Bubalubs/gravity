@@ -1,7 +1,7 @@
 <aside class="menu">
     <p class="menu-label">
         <span class="icon">
-            <span class="fa fa-file"></span>
+            <span class="fas fa-file"></span>
         </span>Pages
     </p>
     <ul class="menu-list">
@@ -11,7 +11,15 @@
     </ul>
     <p class="menu-label">
         <span class="icon">
-            <span class="fa fa-tools"></span>
+            <span class="fas fa-users"></span>
+        </span>Users
+    </p>
+    <ul class="menu-list">
+        <li><a{!! (Request::is('admin/users') ? ' class="is-active"' : '') !!} href="/admin/users">Manage Users</a></li>
+    </ul>
+    <p class="menu-label">
+        <span class="icon">
+            <span class="fas fa-tools"></span>
         </span>Tools
     </p>
     <ul class="menu-list">

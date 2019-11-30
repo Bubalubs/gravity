@@ -7,9 +7,12 @@ Route::middleware('web')->group(function () {
         ->group(function ()
     {
         Route::get('/', 'DashboardController@view');
+
         Route::get('pages/{page}/fields', 'PageController@editFields');
         Route::get('pages/{page}', 'PageController@edit');
         Route::get('pages', 'PagesController@manage');
+
+        Route::get('users', 'UsersController@manage');
 
         Route::post('pages/create', 'PagesController@create');
         Route::post('pages/{page}/update', 'PageController@update');

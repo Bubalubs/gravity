@@ -30,7 +30,7 @@
             @foreach ($pages as $page)
                 <tr>
                     <td>
-                        <p class="is-size-4">{{ $page->displayName }}</p>
+                        {{ $page->displayName }}
                     </td>
                     <td>
                         <div class="field is-grouped is-grouped-right">

@@ -50,10 +50,10 @@
             @foreach ($page->fields as $field)
                 <tr>
                     <td>
-                        <p class="is-size-4">{{ $field->displayName }}</p>
+                        {{ $field->displayName }}
                     </td>
                     <td>
-                        <p class="is-size-4">{{ $field->displayType }}</p>
+                        {{ $field->displayType }}
                     </td>
                     <td>
                         <div class="field is-grouped is-grouped-right">
