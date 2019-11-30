@@ -29,7 +29,7 @@
                 <div class="field">
                     <label class="label">{{ $field->displayName }}</label>
                     <div class="control">
-                        <input class="input" name="{{ $field->name }}" type="text" placeholder="{{ $field->displayName }}" value="{{ $data[$field->name] ?? '' }}">
+                        <color-picker name="{{ $field->name }}" :value="'{{ $data[$field->name] ?? '' }}'"></color-picker>
                     </div>
                 </div>
             @endif
