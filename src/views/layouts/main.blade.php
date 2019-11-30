@@ -11,6 +11,29 @@
             <section class="hero is-light is-bold">
                 <div class="hero-body">
                     <div class="container">
+                        <div class="is-pulled-right">
+                            <a class="button is-info" href="/" target="_blank" v-tooltip="'Open website home in new tab'">
+                                <span class="icon">
+                                    <i class="fas fa-home"></i>
+                                </span>
+                            </a>
+
+                            <a
+                                class="button is-danger"
+                                href="{{ route('logout') }}"
+                                onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                                v-tooltip="'Logout'"
+                            >
+                                <span class="icon">
+                                    <i class="fa fa-sign-out-alt"></i>
+                                </span>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+
                         <h1 class="title">
                             {{ config('app.name') }}
                         </h1>

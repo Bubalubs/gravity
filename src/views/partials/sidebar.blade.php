@@ -1,6 +1,8 @@
 <aside class="menu">
     <p class="menu-label">
-        <span class="fa fa-file"></span> Pages
+        <span class="icon">
+            <span class="fa fa-file"></span>
+        </span>Pages
     </p>
     <ul class="menu-list">
         @foreach ($pages as $page)
@@ -8,7 +10,9 @@
         @endforeach
     </ul>
     <p class="menu-label">
-        <span class="fa fa-tools"></span> Tools
+        <span class="icon">
+            <span class="fa fa-tools"></span>
+        </span>Tools
     </p>
     <ul class="menu-list">
         <li><a{!! (Request::is('admin/pages') ? ' class="is-active"' : '') !!} href="/admin/pages">Manage Pages</a></li>

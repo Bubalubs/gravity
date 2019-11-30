@@ -1,8 +1,15 @@
 @extends('laravel-gravity::layouts.main')
 
 @section('content')
-    <h4 class="title is-4">Edit Page</h4>
+    <div class="is-pulled-right">
+        <a class="button is-info" href="/" target="_blank" v-tooltip="'View this page in new tab'">
+            <span class="icon">
+                <i class="fas fa-external-link-alt"></i>
+            </span>
+        </a>
+    </div>
 
+    <h4 class="title is-4">Edit Page</h4>
     <h6 class="subtitle is-6">{{ $page->displayName }}</h6>
 
     <form method="post" action="/admin/pages/{{ $page->name }}/update" enctype="multipart/form-data">
