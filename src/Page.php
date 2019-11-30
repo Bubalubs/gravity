@@ -17,4 +17,15 @@ class Page extends Model
     {
         return ucwords(str_replace('-', ' ', $this->name));
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($image) {
+            Storage::delete($image->path);
+
+            return true;
+        });
+    }
 }
