@@ -41,12 +41,14 @@ class SetUserAdmin extends Command
      */
     public function handle()
     {
-        $user = $this->userModel::find($this->argument('user'));
+        $user = $this->userModel::where('email', $this->argument('user'))->firstOrFail();
         
         $user->givePermissionTo('access_admin');
         $user->givePermissionTo('edit_page_content_in_admin');
         $user->givePermissionTo('edit_global_content_in_admin');
         $user->givePermissionTo('manage_users_in_admin');
         $user->givePermissionTo('use_tools_in_admin');
+
+        $this->info('Successfully given all admin roles to user: ' . $user->email);
     }
 }
