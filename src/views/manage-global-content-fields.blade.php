@@ -1,10 +1,6 @@
 @extends('laravel-gravity::layouts.main')
 
 @section('content')
-    <a href="/admin/pages" class="button is-info">Back</a>
-
-    <hr>
-
     <h4 class="title is-4">New Field</h4>
 
     <form method="post" action="/admin/global/fields/create">

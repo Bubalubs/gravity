@@ -20,8 +20,8 @@
                     <td>
                         {{ $user->name }}
                     </td>
-                    <td>
-                        
+                    <td class="has-text-right">
+                        <a href="/admin/users/{{ $user->id }}" class="button">Manage User</a>
                     </td>
                 </tr>
             @endforeach

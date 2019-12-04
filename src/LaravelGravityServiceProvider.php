@@ -5,8 +5,10 @@ namespace Bubalubs\LaravelGravity;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Gate;
 use Bubalubs\LaravelGravity\PageContent;
 use Bubalubs\LaravelGravity\Page;
+use Spatie\Permission\Models\Permission;
 
 class LaravelGravityServiceProvider extends ServiceProvider
 {
@@ -28,7 +30,7 @@ class LaravelGravityServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/gravity.php' => config_path('gravity.php'),
+            __DIR__ . '/config' => config_path(),
             __DIR__ . '/views' => resource_path('views/vendor/laravel-gravity')
         ]);
 
@@ -39,6 +41,12 @@ class LaravelGravityServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/migrations');
         $this->loadViewsFrom(__DIR__ . '/views', 'laravel-gravity');
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
+
+        Permission::findOrCreate('access_admin');
+        Permission::findOrCreate('edit_page_content_in_admin');
+        Permission::findOrCreate('edit_global_content_in_admin');
+        Permission::findOrCreate('manage_users_in_admin');
+        Permission::findOrCreate('use_tools_in_admin');
 
         if (Schema::hasTable('page_content')) {
             view()->composer('*', function ($view) {
