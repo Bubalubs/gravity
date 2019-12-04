@@ -29,6 +29,12 @@ class LaravelGravityServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Bubalubs\LaravelGravity\Commands\SetUserAdmin::class
+            ]);
+        }
+
         $this->publishes([
             __DIR__ . '/config' => config_path(),
             __DIR__ . '/views' => resource_path('views/vendor/laravel-gravity')
@@ -42,11 +48,13 @@ class LaravelGravityServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/views', 'laravel-gravity');
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
-        Permission::findOrCreate('access_admin');
-        Permission::findOrCreate('edit_page_content_in_admin');
-        Permission::findOrCreate('edit_global_content_in_admin');
-        Permission::findOrCreate('manage_users_in_admin');
-        Permission::findOrCreate('use_tools_in_admin');
+        if (Schema::hasTable(config('permission.table_names')['permissions'])) {
+            Permission::findOrCreate('access_admin');
+            Permission::findOrCreate('edit_page_content_in_admin');
+            Permission::findOrCreate('edit_global_content_in_admin');
+            Permission::findOrCreate('manage_users_in_admin');
+            Permission::findOrCreate('use_tools_in_admin');
+        }
 
         if (Schema::hasTable('page_content')) {
             view()->composer('*', function ($view) {
