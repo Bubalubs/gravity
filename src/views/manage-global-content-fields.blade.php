@@ -7,7 +7,7 @@
 
     <h4 class="title is-4">New Field</h4>
 
-    <form method="post" action="/admin/pages/{{ $page->name }}/fields/create">
+    <form method="post" action="/admin/global/fields/create">
         @csrf
 
         <div class="field">
@@ -35,9 +35,7 @@
 
     <hr>
 
-    <h4 class="title is-4">Manage Fields</h4>
-
-    <h6 class="subtitle is-6">Page: {{ $page->name }}</h6>
+    <h4 class="title is-4">Manage Global Content Fields</h4>
 
     <table class="table is-fullwidth is-hoverable">
         <thead>
@@ -48,7 +46,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($page->fields as $field)
+            @foreach ($globalContentFields as $field)
                 <tr>
                     <td>
                         {{ $field->displayName }}
@@ -59,7 +57,7 @@
                     <td>
                         <div class="field is-grouped is-grouped-right">
                             <p class="control">
-                                <form method="post" action="/admin/pages/{{ $page->name }}/fields/{{ $field->id }}/delete">
+                                <form method="post" action="/admin/global/fields/{{ $field->id }}/delete">
                                     @csrf
                                     
                                     <input type="hidden" name="_method" value="delete">

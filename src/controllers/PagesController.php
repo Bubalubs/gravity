@@ -20,7 +20,7 @@ class PagesController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:60|unique:pages,name'
+            'name' => 'required|max:60|unique:pages,name|not-in:global'
         ]);
 
         $data = $request->all();
@@ -32,7 +32,7 @@ class PagesController extends Controller
         return redirect('/admin/pages')->with('success', 'Successfully created page');
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         $page = Page::findOrFail($id);
 

@@ -1,21 +1,12 @@
 @extends('laravel-gravity::layouts.main')
 
 @section('content')
-    <div class="is-pulled-right">
-        <a class="button is-info" href="/" target="_blank" v-tooltip="'View this page in new tab'">
-            <span class="icon">
-                <i class="fas fa-external-link-alt"></i>
-            </span>
-        </a>
-    </div>
+    <h4 class="title is-4">Edit Global Content</h4>
 
-    <h4 class="title is-4">Edit Page</h4>
-    <h6 class="subtitle is-6">{{ $page->displayName }}</h6>
-
-    <form method="post" action="/admin/pages/{{ $page->name }}/update" enctype="multipart/form-data">
+    <form method="post" action="/admin/global/update" enctype="multipart/form-data">
         @csrf
 
-        @foreach($page->fields as $field)
+        @foreach($globalPageFields as $field)
             @if ($field->type == 'single-line-text')
                 <div class="field">
                     <label class="label">{{ $field->displayName }}</label>
@@ -24,7 +15,7 @@
                     </div>
                 </div>
             @endif
-            
+
             @if ($field->type == 'multi-line-text')
                 <div class="field">
                     <label class="label">{{ $field->displayName }}</label>
@@ -64,7 +55,7 @@
                     </div>
                 </div>
             @endif
-
+            
             @if ($field->type == 'url')
                 <div class="field">
                     <label class="label">{{ $field->displayName }}</label>

@@ -50,9 +50,11 @@ class LaravelGravityServiceProvider extends ServiceProvider
                     foreach ($content as $field => $value) {
                         $data['content'][$field] = $value;
                     }
-                    
-                    $view->with($data);
                 }
+
+                $data['globalContent'] = PageContent::getGlobalPageContent();
+
+                $view->with($data);
             });
             
             view()->composer('laravel-gravity::partials.sidebar', function ($view) {

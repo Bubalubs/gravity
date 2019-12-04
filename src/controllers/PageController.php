@@ -11,10 +11,8 @@ use Bubalubs\LaravelGravity\ImageProcessor;
 
 class PageController extends Controller
 {
-    public function edit($name)
+    public function edit(string $name)
     {
-        $pages = Page::all();
-
         $page = Page::with('fields')
             ->where('name', $name)
             ->firstOrFail();
@@ -28,31 +26,27 @@ class PageController extends Controller
         }
 
         return view('laravel-gravity::edit-page')->with(compact(
-            'pages',
             'page',
             'data'
         ));
     }
 
-    public function editFields($name)
+    public function editFields(string $name)
     {
-        $pages = Page::all();
-
         $page = Page::with('fields')
             ->where('name', $name)
             ->firstOrFail();
 
         return view('laravel-gravity::manage-page-fields')->with(compact(
-            'pages',
             'page'
         ));
     }
 
-    public function createField($name, Request $request)
+    public function createField(string $name, Request $request)
     {
         $this->validate($request, [
             'name' => 'required|max:60|unique:page_fields,name',
-            'type' => 'required|in:single-line-text,multi-line-text,image,color'
+            'type' => 'required|in:single-line-text,multi-line-text,image,color,url'
         ]);
 
         $page = Page::with('fields')
@@ -64,19 +58,23 @@ class PageController extends Controller
         $data['name'] = Str::slug($data['name'], '-');
         $data['page_id'] = $page->id;
 
+        if ($data['name'] == 'global') {
+            $data['is_global'] = true;
+        }
+
         PageField::create($data);
 
         return redirect('/admin/pages/' . $name . '/fields')->with('success', 'Successfully created field');
     }
 
-    public function deleteField($name, $fieldID)
+    public function deleteField(string $name, int $fieldID)
     {
         PageField::findOrFail($fieldID)->delete();
 
         return redirect('/admin/pages/' . $name . '/fields')->with('success', 'Successfully deleted field');
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         $page = Page::findOrFail($id);
 
@@ -85,12 +83,14 @@ class PageController extends Controller
         return redirect('/admin/pages')->with('success', 'Successfully deleted field');
     }
 
-    public function update($name, Request $request)
+    public function update(string $name, Request $request)
     {
         $page = Page::where('name', $name)->firstOrFail();
 
         foreach ($request->except('_token') as $key => $content) {
-            $field = PageField::where('name', $key)->firstOrFail();
+            $field = PageField::where('name', $key)
+                ->where('page_id', $page->id)
+                ->firstOrFail();
 
             if ($field->type == 'image') {
                 $file = $request->file($field->name);
@@ -109,7 +109,7 @@ class PageController extends Controller
                         $imageProcessor->process();
                     }
 
-                    PageContent::updateContent($page, $field, '/storage' . $path);
+                    PageContent::updateContent($page, $field, $path);
                 }
 
             } else {
