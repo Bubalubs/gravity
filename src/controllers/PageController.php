@@ -45,7 +45,7 @@ class PageController extends Controller
     public function createField(string $name, Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:60|unique:page_fields,name',
+            'name' => 'required|max:60',
             'type' => 'required|in:single-line-text,multi-line-text,image,color,url'
         ]);
 
