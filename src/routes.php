@@ -8,7 +8,7 @@ Route::middleware('web')->group(function () {
     {
         Route::get('/', 'DashboardController@view');
 
-        Route::middleware('can:edit_content_in_admin')->group(function () {
+        Route::middleware('can:edit_page_content_in_admin')->group(function () {
             Route::get('pages/{page}', 'PageController@edit');
 
             Route::post('pages/{page}/update', 'PageController@update');
