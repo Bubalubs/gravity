@@ -57,10 +57,7 @@ class PageController extends Controller
 
         $data['name'] = Str::slug($data['name'], '-');
         $data['page_id'] = $page->id;
-
-        if ($data['name'] == 'global') {
-            $data['is_global'] = true;
-        }
+        $data['is_global'] = false;
 
         PageField::create($data);
 

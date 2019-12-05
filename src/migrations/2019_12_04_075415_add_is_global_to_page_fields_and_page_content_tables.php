@@ -14,11 +14,15 @@ class AddIsGlobalToPageFieldsAndPageContentTables extends Migration
     public function up()
     {
         Schema::table('page_fields', function (Blueprint $table) {
-            $table->boolean('is_global')->after('page_id');
+            $table->boolean('is_global')
+                ->default(false)
+                ->after('page_id');
         });
 
         Schema::table('page_content', function (Blueprint $table) {
-            $table->boolean('is_global')->after('page_field_id');
+            $table->boolean('is_global')
+                ->default(false)
+                ->after('page_field_id');
         });
     }
 
