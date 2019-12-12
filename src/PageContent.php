@@ -47,7 +47,7 @@ class PageContent extends Model
                 }
             }
 
-            $pageContent->content = $content;
+            $pageContent->content = PageContent::sanitize($content);
 
             return $pageContent->save();
         }
@@ -61,7 +61,7 @@ class PageContent extends Model
         }
 
         $pageContent->page_field_id = $field->id;
-        $pageContent->content = $content;
+        $pageContent->content = PageContent::sanitize($content);
         $pageContent->is_global = $field->is_global;
 
         return $pageContent->save();
@@ -110,5 +110,10 @@ class PageContent extends Model
 
                 return [$pageContent->field->name => $pageContent->content];
             });
+    }
+
+    public static function sanitize(string $str): string
+    {
+        return str_replace('\'', '&apos;', $str);
     }
 }
