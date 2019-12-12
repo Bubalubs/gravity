@@ -1,5 +1,5 @@
 {
-    "name": "bubalubs/laravel-gravity",
+    "name": "bubalubs/gravity",
     "description": "A Flexible Laravel CMS",
     "type": "library",
     "license": "MIT",
@@ -17,13 +17,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Bubalubs\\LaravelGravity\\": "src/"
+            "Bubalubs\\Gravity\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Bubalubs\\LaravelGravity\\LaravelGravityServiceProvider"
+                "Bubalubs\\Gravity\\GravityServiceProvider"
             ]
         }
     }

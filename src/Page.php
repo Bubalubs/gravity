@@ -1,6 +1,6 @@
 <?php
 
-namespace Bubalubs\LaravelGravity;
+namespace Bubalubs\Gravity;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,7 +23,7 @@ class Page extends Model
 
     public function fields()
     {
-        return $this->hasMany('Bubalubs\LaravelGravity\PageField');
+        return $this->hasMany('Bubalubs\Gravity\PageField');
     }
 
     public function getDisplayNameAttribute()

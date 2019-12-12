@@ -1,10 +1,10 @@
 <?php
 
-namespace Bubalubs\LaravelGravity\Controllers;
+namespace Bubalubs\Gravity\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Bubalubs\LaravelGravity\Page;
+use Bubalubs\Gravity\Page;
 
 class UsersController extends Controller
 {
@@ -18,7 +18,7 @@ class UsersController extends Controller
     {
         $users = $this->userModel::all();
 
-        return view('laravel-gravity::manage-users')->with(compact(
+        return view('gravity::manage-users')->with(compact(
             'users'
         ));
     }
@@ -27,7 +27,7 @@ class UsersController extends Controller
     {
         $user = $this->userModel::findOrFail($id);
 
-        return view('laravel-gravity::edit-user')->with(compact(
+        return view('gravity::edit-user')->with(compact(
             'user'
         ));
     }

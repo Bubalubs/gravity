@@ -1,14 +1,14 @@
 <?php
 
-namespace Bubalubs\LaravelGravity\Controllers;
+namespace Bubalubs\Gravity\Controllers;
 
 use Illuminate\Http\Request;
-use Bubalubs\LaravelGravity\Page;
+use Bubalubs\Gravity\Page;
 
 class DashboardController extends Controller
 {
     public function view()
     {
-        return view('laravel-gravity::dashboard');
+        return view('gravity::dashboard');
     }
 }

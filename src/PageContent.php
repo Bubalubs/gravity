@@ -1,11 +1,11 @@
 <?php
 
-namespace Bubalubs\LaravelGravity;
+namespace Bubalubs\Gravity;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Bubalubs\LaravelGravity\PageField;
-use Bubalubs\LaravelGravity\Page;
+use Bubalubs\Gravity\PageField;
+use Bubalubs\Gravity\Page;
 
 class PageContent extends Model
 {
@@ -28,12 +28,12 @@ class PageContent extends Model
 
     public function field()
     {
-        return $this->belongsTo('Bubalubs\LaravelGravity\PageField', 'page_field_id');
+        return $this->belongsTo('Bubalubs\Gravity\PageField', 'page_field_id');
     }
 
     public function page()
     {
-        return $this->belongsTo('Bubalubs\LaravelGravity\Page');
+        return $this->belongsTo('Bubalubs\Gravity\Page');
     }
 
     public static function updateContent($page, PageField $field, $content)

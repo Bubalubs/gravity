@@ -1,10 +1,10 @@
 <?php
 
-namespace Bubalubs\LaravelGravity\Controllers;
+namespace Bubalubs\Gravity\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Bubalubs\LaravelGravity\Page;
+use Bubalubs\Gravity\Page;
 
 class PagesController extends Controller
 {
@@ -12,7 +12,7 @@ class PagesController extends Controller
     {
         $pages = Page::all();
 
-        return view('laravel-gravity::manage-pages')->with(compact(
+        return view('gravity::manage-pages')->with(compact(
             'pages'
         ));
     }

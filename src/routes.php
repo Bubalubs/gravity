@@ -2,7 +2,7 @@
 
 Route::middleware('web')->group(function () {
     Route::prefix('admin')
-        ->namespace('Bubalubs\LaravelGravity\Controllers')
+        ->namespace('Bubalubs\Gravity\Controllers')
         ->middleware(['auth', 'can:access_admin'])
         ->group(function ()
     {

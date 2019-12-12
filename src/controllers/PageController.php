@@ -1,13 +1,13 @@
 <?php
 
-namespace Bubalubs\LaravelGravity\Controllers;
+namespace Bubalubs\Gravity\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Bubalubs\LaravelGravity\Page;
-use Bubalubs\LaravelGravity\PageField;
-use Bubalubs\LaravelGravity\PageContent;
-use Bubalubs\LaravelGravity\ImageProcessor;
+use Bubalubs\Gravity\Page;
+use Bubalubs\Gravity\PageField;
+use Bubalubs\Gravity\PageContent;
+use Bubalubs\Gravity\ImageProcessor;
 
 class PageController extends Controller
 {
@@ -25,7 +25,7 @@ class PageController extends Controller
             $data[$key] = $value;
         }
 
-        return view('laravel-gravity::edit-page')->with(compact(
+        return view('gravity::edit-page')->with(compact(
             'page',
             'data'
         ));
@@ -37,7 +37,7 @@ class PageController extends Controller
             ->where('name', $name)
             ->firstOrFail();
 
-        return view('laravel-gravity::manage-page-fields')->with(compact(
+        return view('gravity::manage-page-fields')->with(compact(
             'page'
         ));
     }

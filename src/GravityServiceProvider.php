@@ -1,16 +1,16 @@
 <?php
 
-namespace Bubalubs\LaravelGravity;
+namespace Bubalubs\Gravity;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Gate;
-use Bubalubs\LaravelGravity\PageContent;
-use Bubalubs\LaravelGravity\Page;
+use Bubalubs\Gravity\PageContent;
+use Bubalubs\Gravity\Page;
 use Spatie\Permission\Models\Permission;
 
-class LaravelGravityServiceProvider extends ServiceProvider
+class GravityServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -31,21 +31,21 @@ class LaravelGravityServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Bubalubs\LaravelGravity\Commands\SetUserAdmin::class
+                \Bubalubs\Gravity\Commands\SetUserAdmin::class
             ]);
         }
 
         $this->publishes([
             __DIR__ . '/config' => config_path(),
-            __DIR__ . '/views' => resource_path('views/vendor/laravel-gravity')
+            __DIR__ . '/views' => resource_path('views/vendor/gravity')
         ]);
 
         $this->publishes([
-            __DIR__ . '/resources/dist' => public_path('vendor/laravel-gravity'),
+            __DIR__ . '/resources/dist' => public_path('vendor/gravity'),
         ], 'public');
 
         $this->loadMigrationsFrom(__DIR__ . '/migrations');
-        $this->loadViewsFrom(__DIR__ . '/views', 'laravel-gravity');
+        $this->loadViewsFrom(__DIR__ . '/views', 'gravity');
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
         if (Schema::hasTable(config('permission.table_names')['permissions'])) {
@@ -73,7 +73,7 @@ class LaravelGravityServiceProvider extends ServiceProvider
                 $view->with($data);
             });
             
-            view()->composer('laravel-gravity::partials.sidebar', function ($view) {
+            view()->composer('gravity::partials.sidebar', function ($view) {
                 $pages = Page::all();
 
                 $view->with(compact('pages'));

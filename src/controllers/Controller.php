@@ -1,6 +1,6 @@
 <?php
 
-namespace Bubalubs\LaravelGravity\Controllers;
+namespace Bubalubs\Gravity\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

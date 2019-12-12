@@ -1,6 +1,6 @@
 <?php
 
-namespace Bubalubs\LaravelGravity\Commands;
+namespace Bubalubs\Gravity\Commands;
 
 use Illuminate\Console\Command;
 

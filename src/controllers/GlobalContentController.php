@@ -1,13 +1,13 @@
 <?php
 
-namespace Bubalubs\LaravelGravity\Controllers;
+namespace Bubalubs\Gravity\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Bubalubs\LaravelGravity\Page;
-use Bubalubs\LaravelGravity\PageField;
-use Bubalubs\LaravelGravity\PageContent;
-use Bubalubs\LaravelGravity\ImageProcessor;
+use Bubalubs\Gravity\Page;
+use Bubalubs\Gravity\PageField;
+use Bubalubs\Gravity\PageContent;
+use Bubalubs\Gravity\ImageProcessor;
 
 class GlobalContentController extends Controller
 {
@@ -23,7 +23,7 @@ class GlobalContentController extends Controller
             $data[$key] = $value;
         }
 
-        return view('laravel-gravity::edit-global-content')->with(compact(
+        return view('gravity::edit-global-content')->with(compact(
             'globalPageFields',
             'data'
         ));
@@ -33,7 +33,7 @@ class GlobalContentController extends Controller
     {
         $globalContentFields = PageField::where('is_global', true)->get();
 
-        return view('laravel-gravity::manage-global-content-fields')->with(compact(
+        return view('gravity::manage-global-content-fields')->with(compact(
             'globalContentFields'
         ));
     }

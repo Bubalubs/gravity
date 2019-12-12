@@ -1,6 +1,6 @@
 <?php
 
-namespace Bubalubs\LaravelGravity;
+namespace Bubalubs\Gravity;
 
 use Intervention\Image\ImageManager;
 

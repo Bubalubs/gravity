@@ -1,5 +1,5 @@
 {
-  "name": "laravel-gravity",
+  "name": "gravity",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bubalubs/laravel-gravity.git"
+    "url": "git+https://github.com/Bubalubs/gravity.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Bubalubs/laravel-gravity/issues"
+    "url": "https://github.com/Bubalubs/gravity/issues"
   },
-  "homepage": "https://github.com/Bubalubs/laravel-gravity#readme",
+  "homepage": "https://github.com/Bubalubs/gravity#readme",
   "devDependencies": {
     "bulma": "^0.8.0",
     "cross-env": "^6.0.3",
