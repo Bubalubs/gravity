@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9be9cf82146c37c2538e4b46f48b42f6",
+    "content-hash": "3640a7e00009e72dc10cff2497089a23",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1147,6 +1147,68 @@
             ],
             "description": "A polyfill for getallheaders.",
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "spatie/laravel-menu",
+            "version": "3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-menu.git",
+                "reference": "999ceeb9923c8687146249d3325ecb2c311f1876"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-menu/zipball/999ceeb9923c8687146249d3325ecb2c311f1876",
+                "reference": "999ceeb9923c8687146249d3325ecb2c311f1876",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~5.5.40|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "illuminate/contracts": "~5.5.40|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "illuminate/support": "~5.5.40|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "php": "^7.1",
+                "spatie/menu": "^2.2.2"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.6",
+                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|^4.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Menu\\Laravel\\MenuServiceProvider"
+                    ],
+                    "aliases": {
+                        "Menu": "Spatie\\Menu\\Laravel\\Facades\\Menu"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Menu\\Laravel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastiandedeyne@gmail.com",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Html menu generator for Laravel",
+            "homepage": "https://github.com/spatie/laravel-menu",
+            "keywords": [
+                "laravel-menu",
+                "spatie"
+            ],
+            "time": "2019-09-03T17:39:24+00:00"
         },
         {
             "name": "spatie/laravel-permission",

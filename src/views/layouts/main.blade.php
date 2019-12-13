@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+ add <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin</title>
-        <link rel="stylesheet" href="{{ asset('vendor/gravity/laravel-gravity.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/gravity/gravity.css') }}">
     </head>
     <body>
         <div id="app">
@@ -59,7 +59,7 @@
             </section>
         </div>
 
-        <script src="{{ asset('vendor/gravity/laravel-gravity.js') }}"></script>
+        <script src="{{ asset('vendor/gravity/gravity.js') }}"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
     </body>
 </html>
