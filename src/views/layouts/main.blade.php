@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin</title>
-        <link rel="stylesheet" href="{{ asset('vendor/laravel-gravity/laravel-gravity.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/gravity/laravel-gravity.css') }}">
     </head>
     <body>
         <div id="app">
@@ -47,10 +47,10 @@
                 <div class="container">
                     <div class="columns">
                         <div class="column is-2">
-                            @include('laravel-gravity::partials.sidebar')
+                            @include('gravity::partials.sidebar')
                         </div>
                         <div class="column is-10">
-                            @include('laravel-gravity::partials.alerts')
+                            @include('gravity::partials.alerts')
 
                             @yield('content')
                         </div>
@@ -59,7 +59,7 @@
             </section>
         </div>
 
-        <script src="{{ asset('vendor/laravel-gravity/laravel-gravity.js') }}"></script>
+        <script src="{{ asset('vendor/gravity/laravel-gravity.js') }}"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
     </body>
 </html>
