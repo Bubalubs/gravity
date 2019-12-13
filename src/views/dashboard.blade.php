@@ -1,4 +1,4 @@
-@extends('laravel-gravity::layouts.main')
+@extends('gravity::layouts.main')
 
 @section('content')
     

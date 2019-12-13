@@ -1,4 +1,4 @@
-@extends('laravel-gravity::layouts.main')
+@extends('gravity::layouts.main')
 
 @section('content')
     <a href="/admin/pages" class="button is-info">Back</a>

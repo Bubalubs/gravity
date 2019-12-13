@@ -1,4 +1,4 @@
-@extends('laravel-gravity::layouts.main')
+@extends('gravity::layouts.main')
 
 @section('content')
     <h4 class="title is-4">New Page</h4>
