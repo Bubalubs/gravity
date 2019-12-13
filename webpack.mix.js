@@ -11,8 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('src/resources/js/laravel-gravity.js', 'src/resources/dist/')
-    .sass('src/resources/sass/laravel-gravity.scss', 'src/resources/dist/');
+mix.js('src/resources/js/gravity.js', 'src/resources/dist/')
+    .sass('src/resources/sass/gravity.scss', 'src/resources/dist/');
 
 // Full API
 // mix.js(src, output);
