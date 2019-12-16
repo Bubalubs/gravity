@@ -1,4 +1,4 @@
- add <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="app">
-            <section class="hero is-light is-bold">
+            <section class="hero is-light is-dark">
                 <div class="hero-body">
                     <div class="container">
                         <div class="is-pulled-right">

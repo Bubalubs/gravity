@@ -5,11 +5,8 @@
                 <span class="fas fa-file"></span>
             </span>Pages
         </p>
-        <ul class="menu-list">
-            @foreach ($pages as $page)
-                <li><a{!! (Request::is('admin/pages/' . $page->name) ? ' class="is-active"' : '') !!} href="/admin/pages/{{ $page->name }}">{{ $page->displayName }}</a></li>
-            @endforeach
-        </ul>
+
+        {!! $menu !!}
     @endcan
 
     @can('edit_global_content_in_admin')

@@ -1,4 +1,10 @@
 @import "node_modules/bulma/sass/utilities/initial-variables";
 
+$primary: $grey-darker;
+$info: $grey-lightest;
+
 $input-shadow: none;
 $input-radius: 0;
+
+$menu-list-line-height: 1;
+$menu-item-active-background-color: $grey-darker;

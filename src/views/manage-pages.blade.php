@@ -12,6 +12,21 @@
             </div>
         </div>
 
+        <div class="field">
+            <label class="label">Parent</label>
+            <div class="control">
+                <div class="select">
+                    <select name="parent_id">
+                        <option value="">- None -</option>
+
+                        @foreach ($pages as $page)
+                            <option value="{{ $page->id }}">{{ $page->displayName }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <button type="submit" class="button is-primary">Create</button>
     </form>
 
@@ -23,6 +38,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Parent</th>
                 <th class="has-text-right">Options</th>
             </tr>
         </thead>
@@ -31,6 +47,11 @@
                 <tr>
                     <td>
                         {{ $page->displayName }}
+                    </td>
+                    <td>
+                        @if ($page->parent)
+                            {{ $page->parent->name }}
+                        @endif
                     </td>
                     <td>
                         <div class="field is-grouped is-grouped-right">

@@ -20,7 +20,8 @@ class PagesController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:60|unique:pages,name|not-in:global'
+            'name' => 'required|max:60|unique:pages,name|not-in:global',
+            'parent_id' => 'nullable|exists:pages,id'
         ]);
 
         $data = $request->all();

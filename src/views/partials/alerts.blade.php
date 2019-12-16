@@ -1,5 +1,5 @@
 @if (session('success'))
-    <div class="notification is-primary">
+    <div class="notification is-success">
         {{ session('success') }}
     </div>
 @endif

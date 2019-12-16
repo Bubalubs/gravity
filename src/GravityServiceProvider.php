@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Gate;
 use Bubalubs\Gravity\PageContent;
 use Bubalubs\Gravity\Page;
+use Spatie\Menu\Laravel\Menu;
+use Spatie\Menu\Laravel\Link;
 use Spatie\Permission\Models\Permission;
 
 class GravityServiceProvider extends ServiceProvider
@@ -74,10 +76,38 @@ class GravityServiceProvider extends ServiceProvider
             });
             
             view()->composer('gravity::partials.sidebar', function ($view) {
-                $pages = Page::all();
+                $pages = Page::where('parent_id', null)->get();
 
-                $view->with(compact('pages'));
-            }); 
+                $menu = Menu::new()->addClass('menu-list');
+
+                foreach ($pages as $page) {
+                    $children = $page->children;
+
+                    if (count($children)) {
+                        $subMenu = Menu::new()
+                            ->setActive(request()->path())
+                            ->setActiveClass('is-active')
+                            ->setActiveClassOnLink();
+
+                        foreach ($page->children as $childPage) {
+                            $subMenu = $subMenu->link('/admin/pages/' . $childPage->name, $childPage->displayName);
+                        }
+
+                        $menu = $menu->submenu(Link::to('/admin/pages/' . $page->name, $page->displayName), $subMenu);
+                    } else {
+                        $menu = $menu->link('/admin/pages/' . $page->name, $page->displayName);
+                    }
+                }
+
+                $menu = $menu->setActive(request()->path())
+                    ->setActiveClass('is-active')
+                    ->setActiveClassOnLink();
+
+                $view->with(compact(
+                    'pages',
+                    'menu'
+                ));
+            });
         }
     }
 }

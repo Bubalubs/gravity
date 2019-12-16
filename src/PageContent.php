@@ -112,7 +112,7 @@ class PageContent extends Model
             });
     }
 
-    public static function sanitize(string $str): string
+    public static function sanitize(string $str = null): string
     {
         return str_replace('\'', '&apos;', $str);
     }

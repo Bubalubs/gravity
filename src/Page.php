@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'parent_id'
+    ];
 
     public static function boot()
     {
@@ -24,6 +27,16 @@ class Page extends Model
     public function fields()
     {
         return $this->hasMany('Bubalubs\Gravity\PageField');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo('Bubalubs\Gravity\Page', 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('Bubalubs\Gravity\Page', 'parent_id');
     }
 
     public function getDisplayNameAttribute()

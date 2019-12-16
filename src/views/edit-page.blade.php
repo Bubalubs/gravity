@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="is-pulled-right">
-        <a class="button is-info" href="/" target="_blank" v-tooltip="'View this page in new tab'">
+        <a class="button is-info" href="/{{ $page->name }}" target="_blank" v-tooltip="'View this page in new tab'">
             <span class="icon">
                 <i class="fas fa-external-link-alt"></i>
             </span>
