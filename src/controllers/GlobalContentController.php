@@ -74,20 +74,13 @@ class GlobalContentController extends Controller
                 $file = $request->file($field->name);
 
                 if ($file) {
-                    $mimeType = $file->getMimeType();
+                    dd('Cannot add images to global fields yet');
 
-                    if ($mimeType == 'image/jpeg') {
-                        $path = $file->store('public/page-content/global');
-                        
-                        $path = str_replace('public', '', $path);
+                    $result = $page->addMediaFromRequest($field->name)
+                        ->withResponsiveImages()
+                        ->toMediaCollection($field->name);
 
-                        $fullServerPath = public_path('/storage' . $path);
-
-                        $imageProcessor = new ImageProcessor($fullServerPath);
-                        $imageProcessor->process();
-                    }
-
-                    PageContent::updateContent(null, $field, $path);
+                    PageContent::updateContent(null, $field, $media->getUrl());
                 }
 
             } else {

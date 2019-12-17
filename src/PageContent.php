@@ -3,7 +3,6 @@
 namespace Bubalubs\Gravity;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Bubalubs\Gravity\PageField;
 use Bubalubs\Gravity\Page;
 
@@ -16,9 +15,14 @@ class PageContent extends Model
         parent::boot();
 
         static::deleting(function ($pageContent) {
+
             if ($pageContent->field->type == 'image') {
-                if (Storage::disk('public')->exists($pageContent->content)) {
-                    Storage::disk('public')->delete($pageContent->content);
+                if ($pageContent->page) {
+                    $media = $pageContent->page->getMedia($pageContent->name);
+
+                    if ($media[0]) {
+                        $media[0]->delete();
+                    }
                 }
             }
 
@@ -42,8 +46,12 @@ class PageContent extends Model
 
         if ($pageContent) {
             if ($field->type == "image") {
-                if (Storage::disk('public')->exists($pageContent->content)) {
-                    Storage::disk('public')->delete($pageContent->content);
+                if ($page) {
+                    $media = $page->getMedia($field->name);
+
+                    if ($media[0]) {
+                        $media[0]->delete();
+                    }
                 }
             }
 
@@ -89,9 +97,9 @@ class PageContent extends Model
         return self::where('page_id', $page->id)
             ->with('field')
             ->get()
-            ->mapWithKeys(function ($pageContent) {
+            ->mapWithKeys(function ($pageContent) use ($page) {
                 if ($pageContent->field->type == 'image') {
-                    return [$pageContent->field->name => asset('/storage' . $pageContent->content)];
+                    return [$pageContent->field->name => $page->getMedia($pageContent->field->name)[0]];
                 }
 
                 return [$pageContent->field->name => $pageContent->content];
@@ -105,7 +113,7 @@ class PageContent extends Model
             ->get()
             ->mapWithKeys(function ($pageContent) {
                 if ($pageContent->field->type == 'image') {
-                    return [$pageContent->field->name => asset('/storage' . $pageContent->content)];
+                    return [$pageContent->field->name => asset($pageContent->content)];
                 }
 
                 return [$pageContent->field->name => $pageContent->content];

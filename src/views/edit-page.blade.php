@@ -47,9 +47,11 @@
                             <div class="column">
                                 <h6 class="title is-6">Current</h6>
 
-                                <a href="{{ $data[$field->name] ?? '' }}" target="_blank">
-                                    <img src="{{ $data[$field->name] ?? '' }}" alt="{{ $data[$field->name] ?? '' }}" style="max-height:100px">
-                                </a>
+                                <div class="current-image-container">
+                                    <a href="{{ $data[$field->name]->getUrl() ?? '' }}" target="_blank">
+                                        <img src="{{ $data[$field->name]->getUrl() ?? '' }}" alt="{{ $data[$field->name]->getUrl() ?? '' }}" style="max-height:100px">
+                                    </a>
+                                </div>
                             </div>
                         @endif
                     </div>

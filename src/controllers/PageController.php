@@ -93,20 +93,11 @@ class PageController extends Controller
                 $file = $request->file($field->name);
 
                 if ($file) {
-                    $mimeType = $file->getMimeType();
+                    $media = $page->addMediaFromRequest($field->name)
+                        ->withResponsiveImages()
+                        ->toMediaCollection($field->name);
 
-                    if ($mimeType == 'image/jpeg') {
-                        $path = $file->store('public/page-content/' . $page->name);
-                        
-                        $path = str_replace('public', '', $path);
-
-                        $fullServerPath = public_path('/storage' . $path);
-
-                        $imageProcessor = new ImageProcessor($fullServerPath);
-                        $imageProcessor->process();
-                    }
-
-                    PageContent::updateContent($page, $field, $path);
+                    PageContent::updateContent($page, $field, $media->getUrl());
                 }
 
             } else {

@@ -3,9 +3,13 @@
 namespace Bubalubs\Gravity;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Page extends Model
+class Page extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     protected $fillable = [
         'name',
         'parent_id'
