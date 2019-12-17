@@ -49,7 +49,7 @@
 
                                 <div class="current-image-container">
                                     <a href="{{ $data[$field->name]->getUrl() ?? '' }}" target="_blank">
-                                        <img src="{{ $data[$field->name]->getUrl() ?? '' }}" alt="{{ $data[$field->name]->getUrl() ?? '' }}" style="max-height:100px">
+                                        <img src="{{ $data[$field->name]->getUrl() ?? '' }}" alt="{{ $data[$field->name]->getUrl() ?? '' }}" style="max-height:100px" v-tooltip="'View full image in new tab'">
                                     </a>
                                 </div>
                             </div>
