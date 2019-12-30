@@ -29,40 +29,6 @@ class GlobalContentController extends Controller
         ));
     }
 
-    public function manageFields()
-    {
-        $globalContentFields = PageField::where('is_global', true)->get();
-
-        return view('gravity::manage-global-content-fields')->with(compact(
-            'globalContentFields'
-        ));
-    }
-
-    public function createField(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|max:60',
-            'type' => 'required|in:single-line-text,multi-line-text,image,color,url'
-        ]);
-
-        $data = $request->all();
-
-        $data['name'] = Str::slug($data['name'], '-');
-        $data['page_id'] = 0;
-        $data['is_global'] = true;
-
-        PageField::create($data);
-
-        return redirect('/admin/global/fields/manage')->with('success', 'Successfully created global content field');
-    }
-
-    public function deleteField(int $fieldID)
-    {
-        PageField::findOrFail($fieldID)->delete();
-
-        return redirect('/admin/global/fields/manage')->with('success', 'Successfully deleted global content field');
-    }
-
     public function update(Request $request)
     {
         foreach ($request->except('_token') as $key => $content) {

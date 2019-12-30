@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Gate;
 use Bubalubs\Gravity\PageContent;
 use Bubalubs\Gravity\Page;
+use Bubalubs\Gravity\Entity;
 use Spatie\Menu\Laravel\Menu;
 use Spatie\Menu\Laravel\Link;
 use Spatie\Permission\Models\Permission;
@@ -52,6 +53,7 @@ class GravityServiceProvider extends ServiceProvider
 
         if (Schema::hasTable(config('permission.table_names')['permissions'])) {
             Permission::findOrCreate('access_admin');
+            Permission::findOrCreate('edit_entities_in_admin');
             Permission::findOrCreate('edit_page_content_in_admin');
             Permission::findOrCreate('edit_global_content_in_admin');
             Permission::findOrCreate('manage_users_in_admin');
@@ -76,6 +78,8 @@ class GravityServiceProvider extends ServiceProvider
             });
             
             view()->composer('gravity::partials.sidebar', function ($view) {
+                $entities = Entity::all();
+
                 $pages = Page::where('parent_id', null)->get();
 
                 $menu = Menu::new()->addClass('menu-list');
@@ -104,6 +108,7 @@ class GravityServiceProvider extends ServiceProvider
                     ->setActiveClassOnLink();
 
                 $view->with(compact(
+                    'entities',
                     'pages',
                     'menu'
                 ));

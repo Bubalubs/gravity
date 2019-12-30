@@ -23,6 +23,15 @@
         <div class="field">
             <div class="control">
                 <label class="checkbox">
+                <input type="checkbox" name="edit_entities_in_admin" value="1" {{ $user->can('edit_entities_in_admin') ? 'checked' : '' }}>
+                    Can edit entities
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label class="checkbox">
                 <input type="checkbox" name="edit_page_content_in_admin" value="1" {{ $user->can('edit_page_content_in_admin') ? 'checked' : '' }}>
                     Can edit page content
                 </label>

@@ -42,6 +42,12 @@ class UsersController extends Controller
             $user->revokePermissionTo('access_admin');
         }
 
+        if ($request->edit_entities_in_admin) {
+            $user->givePermissionTo('edit_entities_in_admin');
+        } else {
+            $user->revokePermissionTo('edit_entities_in_admin');
+        }
+
         if ($request->edit_page_content_in_admin) {
             $user->givePermissionTo('edit_page_content_in_admin');
         } else {

@@ -1,13 +1,9 @@
 @extends('gravity::layouts.main')
 
 @section('content')
-    <a href="/admin/pages" class="button is-info">Back</a>
+    <h4 class="title is-4">New Entity</h4>
 
-    <hr>
-
-    <h4 class="title is-4">New Field</h4>
-
-    <form method="post" action="/admin/pages/{{ $page->name }}/fields/create">
+    <form method="post" action="/admin/entities/create">
         @csrf
 
         <div class="field">
@@ -18,15 +14,7 @@
 
         <div class="field">
             <div class="control">
-                <div class="select">
-                    <select name="type">
-                        <option value="single-line-text">Single Line Text</option>
-                        <option value="multi-line-text">Multi Line Text</option>
-                        <option value="image">Image</option>
-                        <option value="color">Color</option>
-                        <option value="url">URL</option>
-                    </select>
-                </div>
+                <input class="input" name="model" type="text" placeholder="Model">
             </div>
         </div>
 
@@ -34,34 +22,36 @@
     </form>
 
     <hr>
-
-    <h4 class="title is-4">Manage Fields</h4>
-
-    <h6 class="subtitle is-6">Page: {{ $page->displayName }}</h6>
+    
+    <h4 class="title is-4">Manage Entities</h4>
 
     <table class="table is-fullwidth is-hoverable">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Type</th>
+                <th>Model</th>
                 <th class="has-text-right">Options</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($page->fields as $field)
+            @foreach ($entities as $entity)
                 <tr>
                     <td>
-                        {{ $field->displayName }}
+                        {{ $entity->displayName }}
                     </td>
                     <td>
-                        {{ $field->displayType }}
+                        {{ $entity->model }}
                     </td>
                     <td>
                         <div class="field is-grouped is-grouped-right">
                             <p class="control">
-                                <form method="post" action="/admin/pages/{{ $page->name }}/fields/{{ $field->id }}/delete">
+                                <a href="/admin/entities/{{ $entity->name }}/fields" class="button">Manage Fields</a>
+                            </p>
+
+                            <p class="control">
+                                <form method="post" action="/admin/entities/{{ $entity->id }}/delete">
                                     @csrf
-                                    
+
                                     <input type="hidden" name="_method" value="delete">
                                     
                                     <button type="submit" class="button is-danger">Delete</button>

@@ -8,6 +8,17 @@ Route::middleware('web')->group(function () {
     {
         Route::get('/', 'DashboardController@view');
 
+        Route::middleware('can:edit_entities_in_admin')->group(function () {
+            Route::get('entities/{entity}', 'EntityController@list');
+            Route::get('entities/{entity}/create', 'EntityController@viewCreateForm');
+            Route::get('entities/{entity}/{id}', 'EntityController@edit');
+
+            Route::post('entities/{entity}/create', 'EntityController@create');
+            Route::post('entities/{entity}/{id}/update', 'EntityController@update');
+
+            Route::delete('entities/{entity}/{id}/delete', 'EntityController@delete');
+        });
+
         Route::middleware('can:edit_page_content_in_admin')->group(function () {
             Route::get('pages/{page}', 'PageController@edit');
 
@@ -29,16 +40,23 @@ Route::middleware('web')->group(function () {
 
         Route::middleware('can:use_tools_in_admin')->group(function () {
             Route::get('pages', 'PagesController@manage');
-            Route::get('pages/{page}/fields', 'PageController@editFields');
-            Route::get('global/fields/manage', 'GlobalContentController@manageFields');
+            Route::get('pages/{page}/fields', 'PageFieldsController@edit');
+            Route::get('global/fields/manage', 'GlobalContentFieldsController@manage');
+            Route::get('entities', 'EntitiesController@manage');
+            Route::get('entities/{entity}/fields', 'EntityFieldsController@edit');
 
             Route::post('pages/create', 'PagesController@create');
-            Route::post('pages/{page}/fields/create', 'PageController@createField');
-            Route::post('global/fields/create', 'GlobalContentController@createField');
+            Route::post('entities/create', 'EntitiesController@create');
+            Route::post('pages/{page}/fields/create', 'PageFieldsController@create');
+            Route::post('entities/{page}/fields/create', 'EntityFieldsController@create');
+            Route::post('global/fields/create', 'GlobalContentFieldsController@create');
+            Route::post('entities/{entity}/fields', 'EntityFieldsController@create');
 
             Route::delete('pages/{id}/delete', 'PagesController@delete');
-            Route::delete('pages/{page}/fields/{fieldID}/delete', 'PageController@deleteField');
-            Route::delete('global/fields/{fieldID}/delete', 'GlobalContentController@deleteField');
+            Route::delete('entities/{id}/delete', 'EntitiesController@delete');
+            Route::delete('pages/{page}/fields/{fieldID}/delete', 'PageFieldsController@delete');
+            Route::delete('entities/{page}/fields/{fieldID}/delete', 'EntityFieldsController@delete');
+            Route::delete('global/fields/{fieldID}/delete', 'GlobalContentFieldsController@delete');
         });
     });
 

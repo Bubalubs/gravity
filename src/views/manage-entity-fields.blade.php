@@ -1,13 +1,13 @@
 @extends('gravity::layouts.main')
 
 @section('content')
-    <a href="/admin/pages" class="button is-info">Back</a>
+    <a href="/admin/entities" class="button is-info">Back</a>
 
     <hr>
 
     <h4 class="title is-4">New Field</h4>
 
-    <form method="post" action="/admin/pages/{{ $page->name }}/fields/create">
+    <form method="post" action="/admin/entities/{{ $entity->name }}/fields/create">
         @csrf
 
         <div class="field">
@@ -37,7 +37,7 @@
 
     <h4 class="title is-4">Manage Fields</h4>
 
-    <h6 class="subtitle is-6">Page: {{ $page->displayName }}</h6>
+    <h6 class="subtitle is-6">Entity: {{ $entity->displayName }}</h6>
 
     <table class="table is-fullwidth is-hoverable">
         <thead>
@@ -48,7 +48,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($page->fields as $field)
+            @foreach ($entity->fields as $field)
                 <tr>
                     <td>
                         {{ $field->displayName }}
@@ -59,7 +59,7 @@
                     <td>
                         <div class="field is-grouped is-grouped-right">
                             <p class="control">
-                                <form method="post" action="/admin/pages/{{ $page->name }}/fields/{{ $field->id }}/delete">
+                                <form method="post" action="/admin/entities/{{ $entity->name }}/fields/{{ $field->id }}/delete">
                                     @csrf
                                     
                                     <input type="hidden" name="_method" value="delete">

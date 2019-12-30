@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 use Bubalubs\Gravity\Page;
 use Bubalubs\Gravity\PageField;
 use Bubalubs\Gravity\PageContent;
-use Bubalubs\Gravity\ImageProcessor;
 
 class PageController extends Controller
 {
@@ -31,53 +30,13 @@ class PageController extends Controller
         ));
     }
 
-    public function editFields(string $name)
-    {
-        $page = Page::with('fields')
-            ->where('name', $name)
-            ->firstOrFail();
-
-        return view('gravity::manage-page-fields')->with(compact(
-            'page'
-        ));
-    }
-
-    public function createField(string $name, Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|max:60',
-            'type' => 'required|in:single-line-text,multi-line-text,image,color,url'
-        ]);
-
-        $page = Page::with('fields')
-            ->where('name', $name)
-            ->firstOrFail();
-
-        $data = $request->all();
-
-        $data['name'] = Str::slug($data['name'], '-');
-        $data['page_id'] = $page->id;
-        $data['is_global'] = false;
-
-        PageField::create($data);
-
-        return redirect('/admin/pages/' . $name . '/fields')->with('success', 'Successfully created field');
-    }
-
-    public function deleteField(string $name, int $fieldID)
-    {
-        PageField::findOrFail($fieldID)->delete();
-
-        return redirect('/admin/pages/' . $name . '/fields')->with('success', 'Successfully deleted field');
-    }
-
     public function delete(int $id)
     {
         $page = Page::findOrFail($id);
 
         $page->delete();
 
-        return redirect('/admin/pages')->with('success', 'Successfully deleted field');
+        return redirect('/admin/pages')->with('success', 'Successfully deleted page');
     }
 
     public function update(string $name, Request $request)
