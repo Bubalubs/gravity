@@ -17,6 +17,16 @@ Publish CSS/JS files for admin control panel
 
 `php artisan vendor:publish --tag=public`
 
+Add the HasRoles Trait to your User model
+
+```
+use Spatie\Permission\Traits\HasRoles;
+
+class User extends Authenticatable
+{
+    use Notifiable, HasRoles;
+```
+
 # Customizing Views
 
 Publish view files to your laravel view directory then edit them to make changes
@@ -27,4 +37,4 @@ Publish view files to your laravel view directory then edit them to make changes
 
 Update to the latest views (This will overwrite any changes you have made)
 
-`php artisan vendor:publish --tag=public --force`
+`php artisan vendor:publish --provider=Bubalubs\LaravelGravity\LaravelGravityServiceProvider --tag=public --force`
