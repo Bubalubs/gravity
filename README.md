@@ -31,10 +31,10 @@ class User extends Authenticatable
 
 Publish view files to your laravel view directory then edit them to make changes
 
-`php artisan vendor:publish --provider=Bubalubs\LaravelGravity\LaravelGravityServiceProvider`
+`php artisan vendor:publish --provider=Bubalubs\Gravity\GravityServiceProvider`
 
 # Updating
 
 Update to the latest views (This will overwrite any changes you have made)
 
-`php artisan vendor:publish --provider=Bubalubs\LaravelGravity\LaravelGravityServiceProvider --tag=public --force`
+`php artisan vendor:publish --provider=Bubalubs\Gravity\GravityServiceProvider --tag=public --force`
