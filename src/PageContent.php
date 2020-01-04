@@ -91,6 +91,12 @@ class PageContent extends Model
         $page = Page::where('name', $pageName)->first();
 
         if (!$page) {
+            $pageNameParts = explode('.', $pageName);
+
+            $page = Page::where('name', end($pageNameParts))->first();
+        }
+
+        if (!$page) {
             return false;
         }
 

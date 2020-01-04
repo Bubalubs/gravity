@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         @if ($page->parent)
-                            {{ $page->parent->name }}
+                            {{ $page->parent->displayName }}
                         @endif
                     </td>
                     <td>
