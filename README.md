@@ -31,7 +31,7 @@ class User extends Authenticatable
 
 # Entities (Models)
 
-Entities allow you to work with a custom laravel model and adds CRUD options to the admin.
+Entities allow you to work with a custom Laravel model and adds CRUD options to the admin.
 
 To work with images on an entity your model must implement the following interface and trait:
 
@@ -61,4 +61,4 @@ Update to the latest views (This will overwrite any changes you have made)
 
 # Thanks
 
-Thanks to [https://spatie.be/open-source](spatie) for their awesome libraries that this package relies on for permissions, media library and menu html generator!
+Thanks to [spatie](https://spatie.be/open-source) for their awesome libraries that this package relies on for permissions, media library and menu html generator!
