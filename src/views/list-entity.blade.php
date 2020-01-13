@@ -11,9 +11,11 @@
         <thead>
             <tr>
                 @foreach($entity->fields as $field)
-                    <th>
-                        {{ $field->displayName }}
-                    </th>
+                    @if ($field->type !== 'multi-line-text')
+                        <th>
+                            {{ $field->displayName }}
+                        </th>
+                    @endif
                 @endforeach
                 <th class="has-text-right">Options</th>
             </tr>
@@ -22,9 +24,21 @@
             @foreach ($items as $item)
                 <tr>
                     @foreach($entity->fields as $field)
-                        <td>
-                            {{ $item->{$field->name} }}
-                        </td>
+                        @if ($field->type !== 'multi-line-text')
+                            @if ($field->type == 'url')
+                                <td>
+                                    <a href="{{ $item->{$field->name} }}" target="_blank">{{ $item->{$field->name} }}</a>
+                                </td>
+                            @elseif ($field->type == 'image')
+                                <td>
+                                    <a href="{{ $item->{$field->name} }}" target="_blank">{{ $item->{$field->name} }}</a>
+                                </td>
+                            @else
+                                <td>
+                                    {{ $item->{$field->name} }}
+                                </td>
+                            @endif
+                        @endif
                     @endforeach
                     <td>
                         <div class="field is-grouped is-grouped-right">

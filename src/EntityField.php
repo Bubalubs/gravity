@@ -21,4 +21,9 @@ class EntityField extends Model
     {
         return ucwords(str_replace('-', ' ', $this->name));
     }
+
+    public function getDisplayTypeAttribute()
+    {
+        return ucwords(str_replace('-', ' ', $this->type));
+    }
 }
