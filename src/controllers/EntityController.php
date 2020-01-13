@@ -118,8 +118,6 @@ class EntityController extends Controller
                         ->withResponsiveImages()
                         ->toMediaCollection($field->name);
 
-                    dd($media);
-
                     $entityModel->{$field->name} = $media->getUrl();
                     $entityModel->save();
                 }
