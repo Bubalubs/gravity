@@ -45,6 +45,20 @@ class EntityController extends Controller
                 ->firstOrFail();
 
             if ($field->type == 'image') {
+                $entityModel->{$field->name} = '';
+            } else {
+                $entityModel->{$field->name} = $content;
+            }
+        }
+
+        $entityModel->save();
+
+        foreach ($request->except('_token') as $key => $content) {
+            $field = EntityField::where('name', $key)
+                ->where('entity_id', $entity->id)
+                ->firstOrFail();
+
+            if ($field->type == 'image') {
                 $file = $request->file($field->name);
 
                 if ($file) {
@@ -54,9 +68,6 @@ class EntityController extends Controller
 
                     $entityModel->{$field->name} = $media->getUrl();
                 }
-
-            } else {
-                $entityModel->{$field->name} = $content;
             }
         }
 
@@ -106,6 +117,8 @@ class EntityController extends Controller
                     $media = $entityModel->addMediaFromRequest($field->name)
                         ->withResponsiveImages()
                         ->toMediaCollection($field->name);
+
+                    dd($media);
 
                     $entityModel->{$field->name} = $media->getUrl();
                     $entityModel->save();
