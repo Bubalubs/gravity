@@ -25,6 +25,26 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use Notifiable, HasRoles;
+
+    ...
+```
+
+# Entities (Models)
+
+Entities allow you to work with a custom laravel model and adds CRUD options to the admin.
+
+To work with images on an entity your model must implement the following interface and trait:
+
+```
+use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
+class YourModel extends Model implements HasMedia
+{
+    use HasMediaTrait;
+    
+    ...
 ```
 
 # Customizing Views
@@ -38,3 +58,7 @@ Publish view files to your laravel view directory then edit them to make changes
 Update to the latest views (This will overwrite any changes you have made)
 
 `php artisan vendor:publish --provider=Bubalubs\Gravity\GravityServiceProvider --tag=public --force`
+
+# Thanks
+
+Thanks to [https://spatie.be/open-source](spatie) for their awesome libraries that this package relies on for permissions, media library and menu html generator!
