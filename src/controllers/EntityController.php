@@ -5,6 +5,7 @@ namespace Bubalubs\Gravity\Controllers;
 use Illuminate\Http\Request;
 use Bubalubs\Gravity\Entity;
 use Bubalubs\Gravity\EntityField;
+use Bubalubs\Gravity\PageContent;
 
 class EntityController extends Controller
 {
@@ -123,7 +124,7 @@ class EntityController extends Controller
                 }
 
             } else {
-                $entityModel->{$field->name} = $content;
+                $entityModel->{$field->name} = PageContent::sanitize($content);
                 $entityModel->save();
             }
         }
