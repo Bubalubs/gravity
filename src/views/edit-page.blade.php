@@ -75,6 +75,16 @@
                     </div>
                 </div>
             @endif
+
+            @if ($field->type == 'checkbox')
+                <div class="field">
+                    <label class="checkbox">
+                        <input type="hidden" name="{{ $field->name }}" value="0">
+                        <input type="checkbox" name="{{ $field->name }}"{{ isset($data[$field->name]) && $data[$field->name] == 'true' ? ' checked' : '' }}>
+                        {{ $field->displayName }}
+                    </label>
+                </div>
+            @endif
         @endforeach
 
         <button type="submit" class="button is-primary">Update</button>

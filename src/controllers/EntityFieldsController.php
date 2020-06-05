@@ -24,7 +24,7 @@ class EntityFieldsController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:60',
-            'type' => 'required|in:single-line-text,multi-line-text,image,color,url'
+            'type' => 'required|in:single-line-text,multi-line-text,image,color,url,checkbox'
         ]);
 
         $entity = Entity::with('fields')

@@ -48,6 +48,10 @@ class EntityController extends Controller
             if ($field->type == 'image') {
                 $entityModel->{$field->name} = '';
             } else {
+                if ($field->type == 'checkbox') {
+                    $content = $content ? 'true' : 'false';
+                }
+
                 $entityModel->{$field->name} = $content;
             }
         }

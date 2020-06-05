@@ -21,6 +21,7 @@
                         <option value="image">Image</option>
                         <option value="color">Color</option>
                         <option value="url">URL</option>
+                        <option value="checkbox">Checkbox</option>
                     </select>
                 </div>
             </div>

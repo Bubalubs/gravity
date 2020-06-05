@@ -40,7 +40,8 @@ class GlobalContentController extends Controller
                 $file = $request->file($field->name);
 
                 if ($file) {
-                    dd('Cannot add images to global fields yet');
+                    // TODO
+                    die('Cannot add images to global fields yet');
 
                     $result = $page->addMediaFromRequest($field->name)
                         ->withResponsiveImages()
@@ -48,8 +49,11 @@ class GlobalContentController extends Controller
 
                     PageContent::updateContent(null, $field, $media->getUrl());
                 }
-
             } else {
+                if ($field->type == 'checkbox') {
+                    $content = $content ? 'true' : 'false';
+                }
+
                 PageContent::updateContent(null, $field, $content);
             }
         }

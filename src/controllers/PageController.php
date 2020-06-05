@@ -60,6 +60,10 @@ class PageController extends Controller
                 }
 
             } else {
+                if ($field->type == 'checkbox') {
+                    $content = $content ? 'true' : 'false';
+                }
+
                 PageContent::updateContent($page, $field, $content);
             }
         }
