@@ -126,8 +126,11 @@ class EntityController extends Controller
                     $entityModel->{$field->name} = $media->getUrl();
                     $entityModel->save();
                 }
-
             } else {
+                if ($field->type == 'checkbox') {
+                    $content = $content ? 'true' : 'false';
+                }
+
                 $entityModel->{$field->name} = PageContent::sanitize($content);
                 $entityModel->save();
             }
