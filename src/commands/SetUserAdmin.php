@@ -44,6 +44,7 @@ class SetUserAdmin extends Command
         $user = $this->userModel::where('email', $this->argument('user'))->firstOrFail();
         
         $user->givePermissionTo('access_admin');
+        $user->givePermissionTo('edit_entities_in_admin');
         $user->givePermissionTo('edit_page_content_in_admin');
         $user->givePermissionTo('edit_global_content_in_admin');
         $user->givePermissionTo('manage_users_in_admin');
