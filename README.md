@@ -1,7 +1,7 @@
 [![Latest Stable Version](https://poser.pugx.org/bubalubs/gravity/v/stable)](https://packagist.org/packages/bubalubs/gravity)
 [![License](https://poser.pugx.org/bubalubs/gravity/license)](https://packagist.org/packages/bubalubs/gravity)
 
-Gravity is a Laravel package that sets up a flexible CMS with an admin control panel
+Gravity is a Laravel package that sets up a light flexible CMS with an admin control panel
 
 # Installation
 
