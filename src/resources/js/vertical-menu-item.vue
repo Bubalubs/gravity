@@ -30,6 +30,20 @@
             return {
                 showChildren: false
             }
+        },
+
+        mounted() {
+            if (this.item.path == this.currentPath) {
+                this.showChildren = true;
+            }
+
+            if (this.item.children) {
+                this.item.children.forEach((childItem) => {
+                    if (childItem.path == this.currentPath) {
+                        this.showChildren = true;
+                    }
+                });
+            }
         }
     }
 </script>
