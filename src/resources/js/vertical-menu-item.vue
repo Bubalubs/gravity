@@ -4,7 +4,7 @@
             {{ item.label }}
         </a>
 
-        <div class="menu-toggle" @click="showChildren = !showChildren">
+        <div v-if="item.children.length > 0" class="menu-toggle" @click="showChildren = !showChildren">
             <span v-if="showChildren">&ndash;</span>
             <span v-if="!showChildren">&#x2b;</span>
         </div>
