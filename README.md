@@ -3,6 +3,8 @@
 
 Gravity is a Laravel package that sets up a light flexible CMS with an admin control panel
 
+![screenshot](/screenshot.png)
+
 # Installation
 
 Install using composer
