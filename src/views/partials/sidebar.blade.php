@@ -1,16 +1,18 @@
 <aside class="menu">
     @can('edit_entities_in_admin')
-        <p class="menu-label">
-            <span class="icon">
-                <span class="fas fa-cogs"></span>
-            </span>Entities
-        </p>
+        @if (count($entities))
+            <p class="menu-label">
+                <span class="icon">
+                    <span class="fas fa-cogs"></span>
+                </span>Entities
+            </p>
 
-        @foreach ($entities as $entity)
-            <ul class="menu-list">
-                <li><a{!! (Request::is('admin/entities/' . $entity->name) ? ' class="is-active"' : '') !!} href="/admin/entities/{{ $entity->name }}">{{ $entity->displayName }}</a></li>
-            </ul>
-        @endforeach
+            @foreach ($entities as $entity)
+                <ul class="menu-list">
+                    <li><a{!! (Request::is('admin/entities/' . $entity->name) ? ' class="is-active"' : '') !!} href="/admin/entities/{{ $entity->name }}">{{ $entity->displayName }}</a></li>
+                </ul>
+            @endforeach
+        @endif
     @endcan
 
     @can('edit_page_content_in_admin')

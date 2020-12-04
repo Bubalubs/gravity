@@ -30,8 +30,10 @@
                                     <a href="{{ $item->{$field->name} }}" target="_blank">{{ $item->{$field->name} }}</a>
                                 </td>
                             @elseif ($field->type == 'image')
-                                <td>
-                                    <a href="{{ $item->{$field->name} }}" target="_blank">{{ $item->{$field->name} }}</a>
+                                <td style="vertical-align: middle">
+                                    <a href="{{ $item->{$field->name} }}" target="_blank">
+                                        <img class="mini-image" src="{{ $item->{$field->name} }}" alt="Image">
+                                    </a>
                                 </td>
                             @else
                                 <td>

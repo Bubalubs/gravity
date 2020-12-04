@@ -201,3 +201,12 @@
         transition: opacity .15s;
     }
 }
+
+[v-cloak] {
+    display: none !important;
+}
+
+.mini-image {
+    max-height: 30px;
+    max-width: 30px;
+}
