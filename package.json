@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/Bubalubs/gravity#readme",
   "devDependencies": {
-    "bulma": "^0.8.2",
-    "cross-env": "^6.0.3",
+    "bulma": "^0.9.1",
+    "cross-env": "^7.0.3",
     "laravel-mix": "^5.0.9",
     "tiptap": "^1.30.0",
     "tiptap-extensions": "^1.33.2",
