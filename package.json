@@ -24,11 +24,11 @@
   "devDependencies": {
     "bulma": "^0.8.2",
     "cross-env": "^6.0.3",
-    "laravel-mix": "^5.0.4",
-    "tiptap": "^1.27.1",
-    "tiptap-extensions": "^1.29.1",
+    "laravel-mix": "^5.0.9",
+    "tiptap": "^1.30.0",
+    "tiptap-extensions": "^1.33.2",
     "v-tooltip": "^2.0.3",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vue-color": "^2.7.1"
   },
   "dependencies": {}

@@ -20,7 +20,11 @@
             </span>Pages
         </p>
 
-        {!! $menu !!}
+        <vertical-menu
+            :menu-data="{{ json_encode($menuData) }}"
+            current-path="/{{ request()->path() }}"
+        >
+        </vertical-menu>
     @endcan
 
     @can('edit_global_content_in_admin')

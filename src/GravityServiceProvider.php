@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Gate;
 use Bubalubs\Gravity\PageContent;
 use Bubalubs\Gravity\Page;
 use Bubalubs\Gravity\Entity;
-use Spatie\Menu\Laravel\Menu;
-use Spatie\Menu\Laravel\Link;
 use Spatie\Permission\Models\Permission;
 
 class GravityServiceProvider extends ServiceProvider
@@ -82,35 +80,29 @@ class GravityServiceProvider extends ServiceProvider
 
                 $pages = Page::where('parent_id', null)->get();
 
-                $menu = Menu::new()->addClass('menu-list');
-
+                $menuData = [];
+                
                 foreach ($pages as $page) {
-                    $children = $page->children;
+                    $menuLink = [
+                        'label' => $page->displayName,
+                        'path' => '/admin/pages/' . $page->name,
+                        'children' => []
+                    ];
 
-                    if (count($children)) {
-                        $subMenu = Menu::new()
-                            ->setActive(request()->path())
-                            ->setActiveClass('is-active')
-                            ->setActiveClassOnLink();
-
-                        foreach ($page->children as $childPage) {
-                            $subMenu = $subMenu->link('/admin/pages/' . $childPage->name, $childPage->displayName);
-                        }
-
-                        $menu = $menu->submenu(Link::to('/admin/pages/' . $page->name, $page->displayName), $subMenu);
-                    } else {
-                        $menu = $menu->link('/admin/pages/' . $page->name, $page->displayName);
+                    foreach ($page->children as $childPage) {
+                        $menuLink['children'][] = [
+                            'label' => $childPage->displayName,
+                            'path' => '/admin/pages/' . $childPage->name,
+                        ];
                     }
-                }
 
-                $menu = $menu->setActive(request()->path())
-                    ->setActiveClass('is-active')
-                    ->setActiveClassOnLink();
+                    $menuData[] = $menuLink;
+                }
 
                 $view->with(compact(
                     'entities',
                     'pages',
-                    'menu'
+                    'menuData'
                 ));
             });
         }

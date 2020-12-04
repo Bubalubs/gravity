@@ -61,4 +61,4 @@ Update to the latest views (This will overwrite any changes you have made)
 
 # Thanks
 
-Thanks to [spatie](https://spatie.be/open-source) for their awesome libraries that this package relies on for permissions, media library and menu html generator!
+Thanks to [spatie](https://spatie.be/open-source) for their awesome libraries that this package relies on for permissions and media library!
