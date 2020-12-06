@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VTooltip from 'v-tooltip';
-import TextEditor from './text-editor.vue';
+import TextEditor from './text-editor/text-editor.vue';
 import ColorPicker from './color-picker.vue';
 import VerticalMenu from './vertical-menu.vue';
 
