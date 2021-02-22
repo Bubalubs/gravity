@@ -31,7 +31,7 @@
                     <div class="field">
                         <label class="label">{{ $field->displayName }}</label>
                         <div class="control">
-                            <text-editor name="{{ $field->name }}" :value="'{{ $data[$field->name] ?? '' }}'"></text-editor>
+                            <text-editor name="{{ $field->name }}" :value="'{{ addslashes($data[$field->name]) ?? '' }}'"></text-editor>
                         </div>
                     </div>
                 @endif
