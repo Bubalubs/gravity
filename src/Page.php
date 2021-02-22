@@ -15,6 +15,10 @@ class Page extends Model implements HasMedia
         'parent_id'
     ];
 
+    protected $appends = [
+        'display_name'
+    ];
+
     public static function boot()
     {
         parent::boot();
@@ -40,7 +44,7 @@ class Page extends Model implements HasMedia
 
     public function children()
     {
-        return $this->hasMany('Bubalubs\Gravity\Page', 'parent_id');
+        return $this->hasMany('Bubalubs\Gravity\Page', 'parent_id')->with('children');
     }
 
     public function getDisplayNameAttribute()

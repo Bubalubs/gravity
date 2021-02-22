@@ -78,7 +78,9 @@ class GravityServiceProvider extends ServiceProvider
             view()->composer('gravity::partials.sidebar', function ($view) {
                 $entities = Entity::all();
 
-                $pages = Page::where('parent_id', null)->get();
+                $pages = Page::where('parent_id', null)
+                    ->orderBy('order')
+                    ->get();
 
                 $menuData = [];
                 

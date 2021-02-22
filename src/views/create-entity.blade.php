@@ -1,6 +1,10 @@
 @extends('gravity::layouts.main')
 
 @section('content')
+    <a href="/admin/entities/{{ $entity->name }}" class="button is-info">Back</a>
+
+    <hr>
+
     <h4 class="title is-4">Create {{ $entity->displayName }}</h4>
 
     <form method="post" action="/admin/entities/{{ $entity->name }}/create" enctype="multipart/form-data">

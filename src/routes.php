@@ -22,8 +22,8 @@ Route::middleware('web')->group(function () {
             Route::post('global/fields/create', 'GlobalContentFieldsController@create');
             Route::post('entities/{entity}/fields', 'EntityFieldsController@create');
 
-            Route::delete('pages/{id}/delete', 'PagesController@delete');
-            Route::delete('entities/{id}/delete', 'EntitiesController@delete');
+            Route::delete('pages/{page}/delete', 'PagesController@delete');
+            Route::delete('entities/{entity}/delete', 'EntitiesController@delete');
             Route::delete('pages/{page}/fields/{fieldID}/delete', 'PageFieldsController@delete');
             Route::delete('entities/{page}/fields/{fieldID}/delete', 'EntityFieldsController@delete');
             Route::delete('global/fields/{fieldID}/delete', 'GlobalContentFieldsController@delete');
@@ -58,6 +58,13 @@ Route::middleware('web')->group(function () {
 
             Route::post('users/{id}/update', 'UsersController@update');
         });
-    });
 
+        // Local API
+        Route::prefix('api')->group(function () {
+            Route::middleware('can:use_tools_in_admin')->group(function () {
+                Route::get('pages', 'PagesController@getAllPages');
+                Route::post('pages/update', 'PagesController@updatePages');
+            });
+        });
+    });
 });
