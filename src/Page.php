@@ -44,7 +44,9 @@ class Page extends Model implements HasMedia
 
     public function children()
     {
-        return $this->hasMany('Bubalubs\Gravity\Page', 'parent_id')->with('children');
+        return $this->hasMany('Bubalubs\Gravity\Page', 'parent_id')
+            ->with('children')
+            ->orderBy('order');
     }
 
     public function getDisplayNameAttribute()
