@@ -10,6 +10,13 @@
 
     <form method="post" action="/admin/users/{{ $user->id }}/update" enctype="multipart/form-data">
         @csrf
+        
+        <div class="field">
+            <label class="label">Set New Password</label>
+            <div class="control">
+                <input class="input" name="password" type="password" placeholder="New Password">
+            </div>
+        </div>
 
         <div class="field">
             <div class="control">

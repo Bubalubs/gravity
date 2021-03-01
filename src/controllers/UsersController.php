@@ -4,6 +4,7 @@ namespace Bubalubs\Gravity\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 use Bubalubs\Gravity\Page;
 
 class UsersController extends Controller
@@ -35,6 +36,11 @@ class UsersController extends Controller
     public function update(int $id, Request $request)
     {
         $user = $this->userModel::findOrFail($id);
+
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+        }
 
         if ($request->access_admin) {
             $user->givePermissionTo('access_admin');
