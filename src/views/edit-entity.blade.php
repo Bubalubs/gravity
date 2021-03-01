@@ -24,7 +24,7 @@
                 <div class="field">
                     <label class="label">{{ $field->displayName }}</label>
                     <div class="control">
-                        <text-editor name="{{ $field->name }}" :value="'{{ addslashes($data[$field->name]) ?? '' }}'"></text-editor>
+                        <text-editor name="{{ $field->name }}" @if(isset($data[$field->name])):value="'{{ addslashes($data[$field->name]) ?? '' }}'"@endif></text-editor>
                     </div>
                 </div>
             @endif
