@@ -14,7 +14,7 @@
         <div class="field">
             <label class="label">Set New Password</label>
             <div class="control">
-                <input class="input" name="password" type="password" placeholder="New Password">
+                <input class="input" name="password" type="password" placeholder="New Password" autocomplete="off">
             </div>
         </div>
 
