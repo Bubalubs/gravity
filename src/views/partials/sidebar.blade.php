@@ -59,6 +59,7 @@
         </p>
         <ul class="menu-list">
             <li><a{!! (Request::is('admin/pages') ? ' class="is-active"' : '') !!} href="/admin/pages">Manage Pages</a></li>
+            <li><a{!! (Request::is('admin/page-templates') ? ' class="is-active"' : '') !!} href="/admin/page-templates">Manage Page Templates</a></li>
             <li><a{!! (Request::is('admin/global/fields/manage') ? ' class="is-active"' : '') !!} href="/admin/global/fields/manage">Manage Global Fields</a></li>
             <li><a{!! (Request::is('admin/entities') ? ' class="is-active"' : '') !!} href="/admin/entities">Manage Entities</a></li>
         </ul>

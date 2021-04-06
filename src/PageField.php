@@ -10,6 +10,7 @@ class PageField extends Model
         'name',
         'type',
         'page_id',
+        'page_template_id',
         'is_global'
     ];
 

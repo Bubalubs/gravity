@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Bubalubs\Gravity\Page;
 use Bubalubs\Gravity\PageField;
-use Bubalubs\Gravity\PageContent;
 
 class PageFieldsController extends Controller
 {
@@ -40,13 +39,17 @@ class PageFieldsController extends Controller
 
         PageField::create($data);
 
-        return redirect('/admin/pages/' . $name . '/fields')->with('success', 'Successfully created field');
+        return redirect('/admin/pages/' . $page->name . '/fields')->with('success', 'Successfully created field');
     }
 
     public function delete(string $name, int $fieldID)
     {
         PageField::findOrFail($fieldID)->delete();
 
-        return redirect('/admin/pages/' . $name . '/fields')->with('success', 'Successfully deleted field');
+        $page = Page::with('fields')
+            ->where('name', $name)
+            ->firstOrFail();
+
+        return redirect('/admin/pages/' . $page->name . '/fields')->with('success', 'Successfully deleted field');
     }
 }

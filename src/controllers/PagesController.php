@@ -5,6 +5,7 @@ namespace Bubalubs\Gravity\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Bubalubs\Gravity\Page;
+use Bubalubs\Gravity\PageTemplate;
 
 class PagesController extends Controller
 {
@@ -12,8 +13,11 @@ class PagesController extends Controller
     {
         $pages = Page::all();
 
+        $pageTemplates = PageTemplate::all();
+
         return view('gravity::manage-pages')->with(compact(
-            'pages'
+            'pages',
+            'pageTemplates'
         ));
     }
 
@@ -21,14 +25,28 @@ class PagesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:60|unique:pages,name|not-in:global',
-            'parent_id' => 'nullable|exists:pages,id'
+            'parent_id' => 'nullable|exists:pages,id',
+            'page_template_id' => 'nullable|exists:page_templates,id'
         ]);
 
         $data = $request->all();
 
         $data['name'] = Str::slug($data['name'], '-');
 
-        Page::create($data);
+        $page = Page::create($data);
+
+        if ($request->page_template_id) {
+            $pageTemplate = PageTemplate::findOrFail($request->page_template_id);
+
+            foreach ($pageTemplate->fields as $field) {
+                $duplicatedField = $field->replicate();
+
+                $duplicatedField->page_template_id = null;
+                $duplicatedField->page_id = $page->id;
+
+                $duplicatedField->save();
+            }
+        }
 
         return redirect('/admin/pages')->with('success', 'Successfully created page');
     }

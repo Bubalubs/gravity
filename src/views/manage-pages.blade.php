@@ -12,17 +12,37 @@
             </div>
         </div>
 
-        <div class="field">
-            <label class="label">Parent</label>
-            <div class="control">
-                <div class="select">
-                    <select name="parent_id">
-                        <option value="">- None -</option>
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <label class="label">Template</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="page_template_id">
+                                @foreach ($pageTemplates as $template)
+                                    <option value="{{ $template->id }}">{{ $template->name }}</option>
+                                @endforeach
 
-                        @foreach ($pages as $page)
-                            <option value="{{ $page->id }}">{{ $page->displayName }}</option>
-                        @endforeach
-                    </select>
+                                <option value="">- None -</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="field">
+                    <label class="label">Parent</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="parent_id">
+                                <option value="">- None -</option>
+
+                                @foreach ($pages as $page)
+                                    <option value="{{ $page->id }}">{{ $page->displayName }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,6 +11,8 @@ Route::middleware('web')->group(function () {
         Route::middleware('can:use_tools_in_admin')->group(function () {
             Route::get('pages', 'PagesController@manage');
             Route::get('pages/{page}/fields', 'PageFieldsController@edit');
+            Route::get('page-templates', 'PageTemplatesController@manage');
+            Route::get('page-templates/{id}/fields', 'PageTemplateFieldsController@edit');
             Route::get('global/fields/manage', 'GlobalContentFieldsController@manage');
             Route::get('entities', 'EntitiesController@manage');
             Route::get('entities/{entity}/fields', 'EntityFieldsController@edit');
@@ -18,14 +20,18 @@ Route::middleware('web')->group(function () {
             Route::post('pages/create', 'PagesController@create');
             Route::post('entities/create', 'EntitiesController@create');
             Route::post('pages/{page}/fields/create', 'PageFieldsController@create');
-            Route::post('entities/{page}/fields/create', 'EntityFieldsController@create');
+            Route::post('page-templates/create', 'PageTemplatesController@create');
+            Route::post('page-templates/{id}/fields/create', 'PageTemplateFieldsController@create');
+            Route::post('entities/{entity}/fields/create', 'EntityFieldsController@create');
             Route::post('global/fields/create', 'GlobalContentFieldsController@create');
             Route::post('entities/{entity}/fields', 'EntityFieldsController@create');
 
             Route::delete('pages/{page}/delete', 'PagesController@delete');
             Route::delete('entities/{entity}/delete', 'EntitiesController@delete');
             Route::delete('pages/{page}/fields/{fieldID}/delete', 'PageFieldsController@delete');
-            Route::delete('entities/{page}/fields/{fieldID}/delete', 'EntityFieldsController@delete');
+            Route::delete('page-templates/{id}/delete', 'PageTemplatesController@delete');
+            Route::delete('page-templates/{id}/fields/{fieldID}/delete', 'PageTemplateFieldsController@delete');
+            Route::delete('entities/{entity}/fields/{fieldID}/delete', 'EntityFieldsController@delete');
             Route::delete('global/fields/{fieldID}/delete', 'GlobalContentFieldsController@delete');
         });
 
