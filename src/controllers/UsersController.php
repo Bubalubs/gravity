@@ -66,6 +66,12 @@ class UsersController extends Controller
             $user->revokePermissionTo('edit_global_content_in_admin');
         }
 
+        if ($request->manage_media_in_admin) {
+            $user->givePermissionTo('manage_media_in_admin');
+        } else {
+            $user->revokePermissionTo('manage_media_in_admin');
+        }
+
         if ($request->manage_users_in_admin) {
             $user->givePermissionTo('manage_users_in_admin');
         } else {

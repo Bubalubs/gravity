@@ -54,6 +54,7 @@ class GravityServiceProvider extends ServiceProvider
             Permission::findOrCreate('edit_entities_in_admin');
             Permission::findOrCreate('edit_page_content_in_admin');
             Permission::findOrCreate('edit_global_content_in_admin');
+            Permission::findOrCreate('manage_media_in_admin');
             Permission::findOrCreate('manage_users_in_admin');
             Permission::findOrCreate('use_tools_in_admin');
         }

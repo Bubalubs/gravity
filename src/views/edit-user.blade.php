@@ -57,6 +57,15 @@
         <div class="field">
             <div class="control">
                 <label class="checkbox">
+                <input type="checkbox" name="manage_media_in_admin" value="1" {{ $user->can('manage_media_in_admin') ? 'checked' : '' }}>
+                    Can manage media
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label class="checkbox">
                 <input type="checkbox" name="manage_users_in_admin" value="1" {{ $user->can('manage_users_in_admin') ? 'checked' : '' }}>
                     Can manage users
                 </label>

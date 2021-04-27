@@ -58,6 +58,15 @@ Route::middleware('web')->group(function () {
             Route::post('global/update', 'GlobalContentController@update');
         });
 
+        Route::middleware('can:manage_media_in_admin')->group(function () {
+            Route::get('media', 'MediaController@manage');
+            Route::get('media/{id}', 'MediaController@edit');
+
+            Route::post('media/create', 'MediaController@create');
+
+            Route::delete('media/{id}/delete', 'MediaController@delete');
+        });
+
         Route::middleware('can:manage_users_in_admin')->group(function () {
             Route::get('users', 'UsersController@manage');
             Route::get('users/{id}', 'UsersController@edit');

@@ -47,6 +47,7 @@ class SetUserAdmin extends Command
         $user->givePermissionTo('edit_entities_in_admin');
         $user->givePermissionTo('edit_page_content_in_admin');
         $user->givePermissionTo('edit_global_content_in_admin');
+        $user->givePermissionTo('manage_media_in_admin');
         $user->givePermissionTo('manage_users_in_admin');
         $user->givePermissionTo('use_tools_in_admin');
 

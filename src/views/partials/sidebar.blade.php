@@ -40,6 +40,17 @@
         </ul>
     @endcan
 
+    @can('manage_media_in_admin')
+        <p class="menu-label">
+            <span class="icon">
+                <span class="fas fa-images"></span>
+            </span>Media
+        </p>
+        <ul class="menu-list">
+            <li><a{!! (Request::is('admin/media') ? ' class="is-active"' : '') !!} href="/admin/media">Manage Media</a></li>
+        </ul>
+    @endcan
+
     @can('manage_users_in_admin')
         <p class="menu-label">
             <span class="icon">

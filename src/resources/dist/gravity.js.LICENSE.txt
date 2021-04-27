@@ -1,23 +1,23 @@
 /*!
-    * tiptap v1.30.0
+    * tiptap v1.32.0
     * (c) 2021 überdosis GbR (limited liability)
     * @license MIT
     */
 
 /*!
-    * tiptap-commands v1.15.0
+    * tiptap-commands v1.17.0
     * (c) 2021 überdosis GbR (limited liability)
     * @license MIT
     */
 
 /*!
-    * tiptap-extensions v1.33.2
+    * tiptap-extensions v1.35.0
     * (c) 2021 überdosis GbR (limited liability)
     * @license MIT
     */
 
 /*!
-    * tiptap-utils v1.11.0
+    * tiptap-utils v1.13.0
     * (c) 2021 überdosis GbR (limited liability)
     * @license MIT
     */

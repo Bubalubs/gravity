@@ -33,7 +33,7 @@ class PageTemplateFieldsController extends Controller
             ->firstOrFail();
 
         $data = $request->all();
-
+        
         $data['name'] = Str::slug($data['name'], '-');
         $data['page_id'] = 0;
         $data['page_template_id'] = $pageTemplate->id;

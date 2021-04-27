@@ -225,6 +225,35 @@
     max-width: 30px;
 }
 
+.media-library {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .preview-box a {
+        width: 160px;
+        height: 160px;
+        border: 1px solid rgb(219, 219, 219);
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+
+        .text-label {
+            display: inline-block;
+            max-width: 150px;
+            padding: 10px;
+            word-wrap: break-word;
+            text-align: center;
+        }
+
+        &:hover {
+            border: 1px solid $primary;
+        }
+    }
+}
+
 [v-cloak] {
     display: none !important;
 }
