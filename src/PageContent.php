@@ -15,9 +15,8 @@ class PageContent extends Model
         parent::boot();
 
         static::deleting(function ($pageContent) {
-
             if ($pageContent->field->type == 'image') {
-                if ($pageContent->page) {
+                if ($pageContent->page && $pageContent->name) {
                     $media = $pageContent->page->getMedia($pageContent->name);
 
                     if ($media[0]) {
