@@ -63,6 +63,17 @@ class GravityServiceProvider extends ServiceProvider
             view()->composer('*', function ($view) {
                 $content = PageContent::getPageContent($view->getName());
 
+                $pageNameParts = explode('.', $view->getName());
+
+                $page = Page::where('name', end($pageNameParts))->first();
+
+                // Page not found error if page is not published and dosn't have admin permission to edit pages
+                if ($page && !$page->published) {
+                    if (!$this->app->request->user() || !$this->app->request->user()->hasAllPermissions(['access_admin', 'edit_page_content_in_admin'])) {
+                        return abort(404);
+                    }
+                }
+
                 if ($content) {
                     $data['content'] = [];
 
