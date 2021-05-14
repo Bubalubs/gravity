@@ -53,4 +53,20 @@ class Page extends Model implements HasMedia
     {
         return ucwords(str_replace('-', ' ', $this->name));
     }
+
+    public function getUrlAttribute(): string
+    {
+        return $this->getUrlSegment($this->name, $this->parent);
+    }
+
+    private function getUrlSegment($pageName, $parent)
+    {
+        $url = '/' . $pageName;
+
+        if (!$parent) {
+            return $url;
+        }
+
+        return $this->getUrlSegment($parent->name, $parent->parent) . $url;
+    }
 }
