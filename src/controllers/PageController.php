@@ -70,4 +70,26 @@ class PageController extends Controller
 
         return redirect('/admin/pages/' . $name)->with('success', 'Successfully updated page');
     }
+
+    public function publish(string $name)
+    {
+        $page = Page::where('name', $name)->firstOrFail();
+
+        $page->update([
+            'published' => 1
+        ]);
+
+        return redirect('/admin/pages/' . $name)->with('success', 'Successfully published page');
+    }
+
+    public function unpublish(string $name)
+    {
+        $page = Page::where('name', $name)->firstOrFail();
+
+        $page->update([
+            'published' => 0
+        ]);
+        
+        return redirect('/admin/pages/' . $name)->with('success', 'Successfully unpublished page, it is now hidden');
+    }
 }

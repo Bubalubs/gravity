@@ -2,10 +2,35 @@
 
 @section('content')
     <div class="is-pulled-right">
+        @if ($page->published)
+            <form method="post" action="/admin/pages/{{ $page->name }}/unpublish" enctype="multipart/form-data" style="display:inline">
+                @csrf
+
+                <button type="submit" class="button is-danger" v-tooltip="'This page is currently public'">
+                    <span class="icon">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>Unpublish</span>
+                </button>
+            </form>
+        @else
+            <form method="post" action="/admin/pages/{{ $page->name }}/publish" enctype="multipart/form-data" style="display:inline">
+                @csrf
+
+                <button type="submit" class="button is-success" v-tooltip="'This page is currently private'" style="display:inline">
+                    <span class="icon">
+                        <i class="fas fa-save"></i>
+                    </span>
+                    <span>Publish</span>
+                </button>
+            </form>
+        @endif
+
         <a class="button is-info" href="{{ $page->url }}" target="_blank" v-tooltip="'View this page in new tab'">
             <span class="icon">
-                <i class="fas fa-external-link-alt"></i>
+                <i class="fas fa-search"></i>
             </span>
+            <span>Preview</span>
         </a>
     </div>
 
@@ -15,7 +40,6 @@
     @if ($page->fields->count())
         <form method="post" action="/admin/pages/{{ $page->name }}/update" enctype="multipart/form-data">
             @csrf
-
 
             @foreach($page->fields as $field)
                 @if ($field->type == 'single-line-text')

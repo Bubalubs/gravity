@@ -12,7 +12,8 @@ class Page extends Model implements HasMedia
 
     protected $fillable = [
         'name',
-        'parent_id'
+        'parent_id',
+        'published'
     ];
 
     protected $appends = [

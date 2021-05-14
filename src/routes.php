@@ -50,6 +50,8 @@ Route::middleware('web')->group(function () {
             Route::get('pages/{page}', 'PageController@edit');
 
             Route::post('pages/{page}/update', 'PageController@update');
+            Route::post('pages/{page}/unpublish', 'PageController@unpublish');
+            Route::post('pages/{page}/publish', 'PageController@publish');
         });
 
         Route::middleware('can:edit_global_content_in_admin')->group(function () {
