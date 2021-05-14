@@ -47,11 +47,12 @@
     }
 
     .ProseMirror {
-        height: 260px;
+        height: 360px;
         overflow-y: scroll;
         border: 1px solid rgb(219, 219, 219);
         margin-top: 4px;
         padding: 20px;
+        resize: vertical;
     }
 }
 
