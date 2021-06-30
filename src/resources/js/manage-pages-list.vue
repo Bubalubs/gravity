@@ -55,10 +55,6 @@
             }
         },
 
-        mounted() {
-            //
-        },
-
         methods: {
             updateOrder() {
                 axios.post('/admin/api/pages/update', { 

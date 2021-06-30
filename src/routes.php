@@ -82,6 +82,11 @@ Route::middleware('web')->group(function () {
                 Route::get('pages', 'PagesController@getAllPages');
                 Route::post('pages/update', 'PagesController@updatePages');
             });
+
+            Route::middleware('can:manage_media_in_admin')->group(function () {
+                Route::get('media/images', 'MediaController@getMediaImagesData');
+                Route::post('media/images/upload', 'MediaController@uploadImage');
+            });
         });
     });
 });

@@ -10,7 +10,7 @@
         <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
             <div class="menubar">
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.bold() }"
                     @click.prevent="commands.bold"
                     v-tooltip="'Bold'"
@@ -19,7 +19,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.italic() }"
                     @click.prevent="commands.italic"
                     v-tooltip="'Italic'"
@@ -28,7 +28,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.underline() }"
                     @click.prevent="commands.underline"
                     v-tooltip="'Underline'"
@@ -37,15 +37,15 @@
                 </button>
 
                 <button
-                    class="button"
-                    @click.prevent="showImageModal(commands.image)"
+                    class="button menubar-button"
+                    @click.prevent="toggleImageModal()"
                     v-tooltip="'Image'"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>paginate-filter-picture-alternate</title><circle cx="9.75" cy="6.247" r="2.25"/><path d="M16.916,8.71A1.027,1.027,0,0,0,16,8.158a1.007,1.007,0,0,0-.892.586L13.55,12.178a.249.249,0,0,1-.422.053l-.82-1.024a1,1,0,0,0-.813-.376,1.007,1.007,0,0,0-.787.426L7.59,15.71A.5.5,0,0,0,8,16.5H20a.5.5,0,0,0,.425-.237.5.5,0,0,0,.022-.486Z"/><path d="M22,0H5.5a2,2,0,0,0-2,2V18.5a2,2,0,0,0,2,2H22a2,2,0,0,0,2-2V2A2,2,0,0,0,22,0Zm-.145,18.354a.5.5,0,0,1-.354.146H6a.5.5,0,0,1-.5-.5V2.5A.5.5,0,0,1,6,2H21.5a.5.5,0,0,1,.5.5V18A.5.5,0,0,1,21.855,18.351Z"/><path d="M19.5,22H2.5a.5.5,0,0,1-.5-.5V4.5a1,1,0,0,0-2,0V22a2,2,0,0,0,2,2H19.5a1,1,0,0,0,0-2Z"/></svg>
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.heading({ level: 1 }) }"
                     @click.prevent="commands.heading({ level: 1 })"
                     v-tooltip="'Header 1'"
@@ -54,7 +54,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.heading({ level: 2 }) }"
                     @click.prevent="commands.heading({ level: 2 })"
                     v-tooltip="'Header 2'"
@@ -63,7 +63,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.heading({ level: 3 }) }"
                     @click.prevent="commands.heading({ level: 3 })"
                     v-tooltip="'Header 3'"
@@ -72,7 +72,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.heading({ level: 4 }) }"
                     @click.prevent="commands.heading({ level: 4 })"
                     v-tooltip="'Header 4'"
@@ -81,7 +81,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.bullet_list() }"
                     @click.prevent="commands.bullet_list"
                     v-tooltip="'Bullet List'"
@@ -90,7 +90,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     :class="{ 'is-active': isActive.ordered_list() }"
                     @click.prevent="commands.ordered_list"
                     v-tooltip="'Ordered List'"
@@ -99,7 +99,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     @click.prevent="commands.horizontal_rule"
                     v-tooltip="'Horizontal Seperator'"
                 >
@@ -107,7 +107,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     @click.prevent="commands.undo"
                     v-tooltip="'Undo'"
                 >
@@ -115,7 +115,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     @click.prevent="commands.redo"
                     v-tooltip="'Redo'"
                 >
@@ -123,7 +123,7 @@
                 </button>
 
                 <button
-                    class="button"
+                    class="button menubar-button"
                     @click.prevent="commands.createTable({rowsCount: 3, colsCount: 3, withHeaderRow: true })"
                     v-tooltip="'Create Table (3x3)'"
                 >
@@ -132,7 +132,7 @@
 
                 <span v-if="isActive.table()">
                     <button
-                        class="button"
+                        class="button menubar-button"
                         @click.prevent="commands.deleteTable"
                         v-tooltip="'Delete Table'"
                     >
@@ -140,7 +140,7 @@
                     </button>
 
                     <button
-                        class="button"
+                        class="button menubar-button"
                         @click.prevent="commands.addColumnBefore"
                         v-tooltip="'Table: Add Column Before'"
                     >
@@ -148,7 +148,7 @@
                     </button>
 
                     <button
-                        class="button"
+                        class="button menubar-button"
                         @click.prevent="commands.addColumnAfter"
                         v-tooltip="'Table: Add Column After'"
                     >
@@ -156,7 +156,7 @@
                     </button>
 
                     <button
-                        class="button"
+                        class="button menubar-button"
                         @click.prevent="commands.deleteColumn"
                         v-tooltip="'Table: Delete Column'"
                     >
@@ -164,7 +164,7 @@
                     </button>
 
                     <button
-                        class="button"
+                        class="button menubar-button"
                         @click.prevent="commands.addRowBefore"
                         v-tooltip="'Table: Add Row Before'"
                     >
@@ -172,7 +172,7 @@
                     </button>
 
                     <button
-                        class="button"
+                        class="button menubar-button"
                         @click.prevent="commands.addRowAfter"
                         v-tooltip="'Table: Add Row After'"
                     >
@@ -180,7 +180,7 @@
                     </button>
 
                     <button
-                        class="button"
+                        class="button menubar-button"
                         @click.prevent="commands.deleteRow"
                         v-tooltip="'Table: Delete Row'"
                     >
@@ -188,7 +188,7 @@
                     </button>
 
                     <button
-                        class="button"
+                        class="button menubar-button"
                         @click.prevent="commands.toggleCellMerge"
                         v-tooltip="'Table: Toggle Cell Merge'"
                     >
@@ -224,6 +224,16 @@
             </div>
         </editor-menu-bubble>
 
+        <modal
+            :is-active="showImageLibraryModal"
+            @close="toggleImageModal()"
+        >
+            <media-library
+                @select-media="addImage"
+            >
+            </media-library>
+        </modal>
+
         <editor-content class="content" :editor="editor" />
     </div>
 </template>
@@ -249,6 +259,8 @@
 		TableRow
     } from 'tiptap-extensions';
     import Iframe from './Iframe.js';
+    import Modal from '../modal.vue';
+    import MediaLibrary from '../media-library.vue';
 
     export default {
         props: [
@@ -258,6 +270,8 @@
         ],
         
         components: {
+            Modal,
+            MediaLibrary,
             EditorContent,
             EditorMenuBar,
             EditorMenuBubble
@@ -295,7 +309,8 @@
                 }),
                 content: '',
                 linkUrl: null,
-                linkMenuIsActive: false
+                linkMenuIsActive: false,
+                showImageLibraryModal: false
             }
         },
 
@@ -335,12 +350,16 @@
                 this.content = updatedContent;
             },
 
-            showImageModal(command) {
-                const src = prompt('Image URL')
-                if (src !== null) {
-                    command({ src })
-                }
+            toggleImageModal() {
+                this.showImageLibraryModal = !this.showImageLibraryModal;
             },
+
+            addImage(path) {
+                if (path !== null) {
+                    this.editor.commands.image({ src: path })
+                    this.toggleImageModal();
+                }
+            }
         },
 
         watch: {

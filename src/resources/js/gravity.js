@@ -3,6 +3,7 @@ import VTooltip from 'v-tooltip';
 import TextEditor from './text-editor/text-editor.vue';
 import ColorPicker from './color-picker.vue';
 import VerticalMenu from './vertical-menu.vue';
+import MediaLibrary from './media-library.vue';
 import ManagePagesList from './manage-pages-list.vue';
 
 window.axios = require('axios');
@@ -17,6 +18,7 @@ new Vue({
         TextEditor,
         ColorPicker,
         VerticalMenu,
+        MediaLibrary,
         ManagePagesList
     }
 })

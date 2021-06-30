@@ -31,7 +31,7 @@
     "tiptap-extensions": "^1.34.0",
     "v-tooltip": "^2.1.2",
     "vue": "^2.6.12",
-    "vue-color": "^2.8.1"
-  },
-  "dependencies": {}
+    "vue-color": "^2.8.1",
+    "vue-image-crop-upload": "^3.0.3"
+  }
 }
