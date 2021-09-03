@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Admin</title>
-        <link rel="stylesheet" href="{{ asset('vendor/gravity/gravity.css') }}?v=4282021">
+        <link rel="stylesheet" href="{{ asset('vendor/gravity/gravity.css') }}?v=942021">
     </head>
     <body>
         <div id="app">
@@ -56,7 +56,7 @@
             </section>
         </div>
 
-        <script src="{{ asset('vendor/gravity/gravity.js') }}"></script>
+        <script src="{{ asset('vendor/gravity/gravity.js') }}?v=942021"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
     </body>
 </html>
