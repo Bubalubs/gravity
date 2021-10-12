@@ -40,7 +40,6 @@ class MediaController extends Controller
         return response()->json($media);
     }
 
-
     public function edit(int $id)
     {
         $media = Media::findOrFail($id);

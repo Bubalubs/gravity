@@ -1,23 +1,23 @@
 <template>
     <div class="media-library-container">
-        <a class="button is-primary" @click="toggleShow">Upload Image</a>
+        <div class="media-upload-preview">
+            <img :src="uploadedImageURL">
+        </div>
 
-        <my-upload
-            v-model="show"
-            field="file"
-            @crop-success="cropSuccess"
-            @crop-upload-success="cropUploadSuccess"
-            @crop-upload-fail="cropUploadFail"
-            url="/admin/api/media/images/upload"
-            :width="300"
-            :height="300"
-            :params="{ _token: csrf }"
-            img-format="png"
-            langType="en"
-        >
-        </my-upload>
+        <div class="media-upload-input">
+            <form enctype="multipart/form-data">
+                <input type="file" name="media" accept="image/png, image/jpeg" @change="selectImage($event)" ref="mediaFile" :disabled="uploading">
+            </form>
+        </div>
+
+        <div style="margin-top:20px">
+            <button type="button" class="button is-primary" @click="uploadImage()" v-if="!uploading">Upload</button>
+            <button type="button" class="button is-primary" disabled v-else>Uploading...</button>
+        </div>
 
         <hr>
+
+        <h5 class="title is-5">Media Library</h5>
 
         <div class="media-library">
             <div class="preview-box" v-for="media in mediaLibrary" :key="media.id">
@@ -30,20 +30,16 @@
 </template>
 
 <script>
-    import imageUpload from 'vue-image-crop-upload/upload-2.vue';
     import axios from 'axios';
 
     export default {
-		components: {
-			'my-upload': imageUpload
-		},
-
         data() {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 mediaLibrary: [],
-                show: false,
-                imgDataUrl: ''
+                uploadedImageURL: '',
+                uploadedImageData: '',
+                uploading: false
             }
         },
 
@@ -62,23 +58,41 @@
                 this.$emit('select-media', path);
             },
 
-			toggleShow() {
-				this.show = !this.show;
-			},
+            selectImage(event) {
+                let reader = new FileReader();
 
-			cropSuccess(imgDataUrl){
-				this.imgDataUrl = imgDataUrl;
-			},
+                reader.onload = (event) => {
+                    if (event.target) {
+                        this.uploadedImageURL = event.target.result;
+                    }
+                };
 
-			cropUploadSuccess(){
-                this.getMediaLibraryData();
-			},
+                reader.readAsDataURL(event.target.files[0]);
+                this.uploadedImageData = event.target.files[0];
+            },
 
-			cropUploadFail(status, field){
-                // TODO: needs better error handling
-				console.log('Upload Failed');
-				console.log(status);
-			}
+            uploadImage() {
+                if (this.uploadedImageData == '' || this.uploading) {
+                    return false;
+                }
+
+                this.uploading = true;
+
+                var formData = new FormData();
+
+                formData.append('file', this.uploadedImageData);
+
+                axios.post('/admin/api/media/images/upload', formData)
+                    .then(response => {
+                        this.uploading = false;
+
+                        this.uploadedImageData = '';
+                        this.uploadedImageURL = '';
+                        this.$refs.mediaFile.value = null;
+
+                        this.getMediaLibraryData();
+                    });
+            }
         }
     }
 </script>

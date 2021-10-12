@@ -226,6 +226,14 @@
     max-width: 30px;
 }
 
+.media-library-container {
+    .media-upload-preview {
+        img {
+            max-height: 100px;
+        }
+    }
+}
+
 .media-library {
     display: flex;
     flex-direction: row;
