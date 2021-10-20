@@ -79,6 +79,10 @@ class GravityServiceProvider extends ServiceProvider
 
                     foreach ($content as $field => $value) {
                         $data['content'][$field] = $value;
+
+                        if ($value instanceof \Spatie\MediaLibrary\Models\Media) {
+                            $data['content'][$field] = $value->getUrl();
+                        }
                     }
                 }
 
