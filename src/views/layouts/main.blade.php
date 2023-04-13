@@ -35,7 +35,7 @@
                     </div>
 
                     <h1 class="title">
-                        {{ config('app.name') }}
+                        <a href="/admin">{{ config('app.name') }}</a>
                     </h1>
                     <h2 class="subtitle">
                         Admin
