@@ -1,6 +1,17 @@
 <?php
 
+use Bubalubs\Gravity\Page;
+
 Route::middleware('web')->group(function () {
+    Route::get('/page/{slug}', function (string $slug) {
+        $page = Page::where('name', $slug)->firstOrFail();
+
+        return view('page', [
+            'title' => $page->name,
+            'name' => 'Finn', 
+            'job' => 'words'
+        ]);
+    });
     Route::prefix('admin')
         ->namespace('Bubalubs\Gravity\Controllers')
         ->middleware(['auth', 'can:access_admin'])
