@@ -74,7 +74,8 @@ class GravityServiceProvider extends ServiceProvider
                     }
                 }
 
-                if ($content) {
+                // FIXME: $content is a string of 'page'
+                if ($content && is_array($content)) {
                     $data['content'] = [];
 
                     foreach ($content as $field => $value) {
