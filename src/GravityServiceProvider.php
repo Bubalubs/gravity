@@ -61,6 +61,10 @@ class GravityServiceProvider extends ServiceProvider
 
         if (Schema::hasTable('page_content')) {
             view()->composer('*', function ($view) {
+                if (str_contains($view->getName(), 'gravity::')) {
+                    return;
+                }
+
                 $content = PageContent::getPageContent($view->getName())->all();
 
                 $pageNameParts = explode('.', $view->getName());
