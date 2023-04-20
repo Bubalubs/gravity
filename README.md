@@ -31,6 +31,8 @@ class User extends Authenticatable
     ...
 ```
 
+To get going with basic auth, you can use [Laravel Breeze](https://laravel.com/docs/10.x/starter-kits#laravel-breeze)
+
 # Entities (Models)
 
 Entities allow you to work with a custom Laravel model and adds CRUD options to the admin.

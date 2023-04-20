@@ -23,6 +23,9 @@ class CreateMediaTable extends Migration
             $table->json('manipulations');
             $table->json('custom_properties');
             $table->json('responsive_images');
+            $table->json('conversions_disk');
+            $table->json('generated_conversions');
+            $table->char('uuid', 36)->nullable();
             $table->unsignedInteger('order_column')->nullable();
             $table->nullableTimestamps();
         });

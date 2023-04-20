@@ -88,16 +88,14 @@ class PageContent extends Model
     public static function getPageContent($pageName)
     {
         $page = Page::where('name', $pageName)->first();
-
         if (!$page) {
-            $pageNameParts = explode('.', $pageName);
-
-            $page = Page::where('name', end($pageNameParts))->first();
+            return $pageName;
         }
 
-        if (!$page) {
-            return false;
-        }
+        $pageNameParts = explode('.', $pageName);
+
+        $page = Page::where('name', end($pageNameParts))->first();
+
 
         return self::where('page_id', $page->id)
             ->with('field')
