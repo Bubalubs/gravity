@@ -33,6 +33,14 @@ class User extends Authenticatable
 
 To get going with basic auth, you can use [Laravel Breeze](https://laravel.com/docs/10.x/starter-kits#laravel-breeze)
 
+# Usage
+
+Using blade templating, you can output the CMS values.
+
+To ouput global content use `{{ $globalContent['field-name']}}`
+
+To show page content use `{{ $content['field-name'] }}`
+
 # Entities (Models)
 
 Entities allow you to work with a custom Laravel model and adds CRUD options to the admin.
