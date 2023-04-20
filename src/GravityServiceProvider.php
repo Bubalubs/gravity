@@ -61,7 +61,7 @@ class GravityServiceProvider extends ServiceProvider
 
         if (Schema::hasTable('page_content')) {
             view()->composer('*', function ($view) {
-                $content = PageContent::getPageContent($view->getName());
+                $content = PageContent::getPageContent($view->getName())->all();
 
                 $pageNameParts = explode('.', $view->getName());
 
@@ -73,8 +73,7 @@ class GravityServiceProvider extends ServiceProvider
                         return abort(404);
                     }
                 }
-
-                // FIXME: $content is a string of 'page'
+                
                 if ($content && is_array($content)) {
                     $data['content'] = [];
 
