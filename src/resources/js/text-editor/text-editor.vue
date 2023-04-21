@@ -7,12 +7,12 @@
         >
         </textarea>
 
-        <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
+        <div v-if="editor">
             <div class="menubar">
                 <button
                     class="button menubar-button"
-                    :class="{ 'is-active': isActive.bold() }"
-                    @click.prevent="commands.bold"
+                    :class="{ 'is-active': editor.isActive('bold') }"
+                    @click="editor.chain().focus().toggleBold().run()"
                     v-tooltip="'Bold'"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.287 11.121c1.588-1.121 2.713-3.018 2.713-5.093 0-2.946-1.918-5.951-7.093-6.028h-11.907v2.042c1.996 0 3 .751 3 2.683v14.667c0 1.689-.558 2.608-3 2.608v2h11.123c6.334 0 8.877-3.599 8.877-7.038 0-2.538-1.417-4.67-3.713-5.841zm-8.287-8.121h2.094c2.357 0 4.126 1.063 4.126 3.375 0 2.035-1.452 3.625-3.513 3.625h-2.707v-7zm2.701 18h-2.701v-8h2.781c2.26.024 3.927 1.636 3.927 3.667 0 2.008-1.226 4.333-4.007 4.333z"/></svg>
@@ -20,8 +20,8 @@
 
                 <button
                     class="button menubar-button"
-                    :class="{ 'is-active': isActive.italic() }"
-                    @click.prevent="commands.italic"
+                    :class="{ 'is-active': editor.isActive('italic') }"
+                    @click="editor.chain().focus().toggleItalic().run()"
                     v-tooltip="'Italic'"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.565 20.827c-.361.732-.068 1.173.655 1.173h1.78v2h-9v-2h.897c1.356 0 1.673-.916 2.157-1.773l8.349-16.89c.403-.852-.149-1.337-.855-1.337h-1.548v-2h9v2h-.84c-1.169 0-1.596.646-2.06 1.516l-8.535 17.311z"/></svg>
@@ -29,8 +29,8 @@
 
                 <button
                     class="button menubar-button"
-                    :class="{ 'is-active': isActive.underline() }"
-                    @click.prevent="commands.underline"
+                    :class="{ 'is-active': editor.isActive('underline') }"
+                    @click="editor.chain().focus().toggleUnderline().run()"
                     v-tooltip="'Underline'"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 24h-16v-2h16v2zm-5-24v1.973c1.619 0 2 .926 2 1.497v9.056c0 2.822-2.161 4.507-5 4.507s-5-1.685-5-4.507v-9.056c0-.571.381-1.497 2-1.497v-1.973h-7v1.973c1.66 0 2 .575 2 1.497v8.828c0 5.175 3.096 7.702 8 7.702 4.899 0 8-2.527 8-7.702v-8.828c0-.922.34-1.497 2-1.497v-1.973h-7z"/></svg>
@@ -46,8 +46,8 @@
 
                 <button
                     class="button menubar-button"
-                    :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-                    @click.prevent="commands.heading({ level: 1 })"
+                    :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+                    @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
                     v-tooltip="'Header 1'"
                 >
                     H1
@@ -55,8 +55,8 @@
 
                 <button
                     class="button menubar-button"
-                    :class="{ 'is-active': isActive.heading({ level: 2 }) }"
-                    @click.prevent="commands.heading({ level: 2 })"
+                    :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
+                    @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
                     v-tooltip="'Header 2'"
                 >
                     H2
@@ -64,8 +64,8 @@
 
                 <button
                     class="button menubar-button"
-                    :class="{ 'is-active': isActive.heading({ level: 3 }) }"
-                    @click.prevent="commands.heading({ level: 3 })"
+                    :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }"
+                    @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
                     v-tooltip="'Header 3'"
                 >
                     H3
@@ -73,8 +73,8 @@
 
                 <button
                     class="button menubar-button"
-                    :class="{ 'is-active': isActive.heading({ level: 4 }) }"
-                    @click.prevent="commands.heading({ level: 4 })"
+                    :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }"
+                    @click="editor.chain().focus().toggleHeading({ level: 4 }).run()"
                     v-tooltip="'Header 4'"
                 >
                     H4
@@ -196,7 +196,7 @@
                     </button>
                 </span>
             </div>
-        </editor-menu-bar>
+        </div>
 
         <editor-menu-bubble class="menububble" :editor="editor" @hide="hideLinkMenu" v-slot="{ commands, isActive, getMarkAttrs, menu }">
             <div
@@ -239,28 +239,37 @@
 </template>
 
 <script>
-    import { Editor, EditorContent, EditorMenuBar, EditorMenuBubble } from 'tiptap';
-    import {
-        HardBreak,
-        Heading,
-        HorizontalRule,
-        OrderedList,
-        BulletList,
-        ListItem,
-        Bold,
-        Italic,
-        Link,
-        Underline,
-        Image,
-        History,
-		Table,
-		TableHeader,
-		TableCell,
-		TableRow
-    } from 'tiptap-extensions';
-    import Iframe from './Iframe.js';
-    import Modal from '../modal.vue';
+    // import { Editor, EditorContent, EditorMenuBar, EditorMenuBubble } from 'tiptap';
+    // import {
+    //     HardBreak,
+    //     Heading,
+    //     HorizontalRule,
+    //     Bold,
+    //     Italic,
+    //     Link,
+    //     Underline,
+    //     Image,
+    //     History,
+	// 	Table,
+	// 	TableHeader,
+	// 	TableCell,
+	// 	TableRow
+    // } from 'tiptap-extensions';
+    
+    // TODO: is this needed?
+    // import Iframe from './Iframe.js';
+
+    import { Editor, EditorContent } from '@tiptap/vue-2';
+    import Document from '@tiptap/extension-document';
+    import Paragraph from '@tiptap/extension-paragraph';
+    import Text from '@tiptap/extension-text';
+    import BulletList from '@tiptap/extension-bullet-list';
+    import OrderedList from '@tiptap/extension-ordered-list';
+    import ListItem from '@tiptap/extension-list-item';
+    import Heading from '@tiptap/extension-heading'
+
     import MediaLibrary from '../media-library.vue';
+    import Modal from '../modal.vue';
 
     export default {
         props: [
@@ -273,39 +282,44 @@
             Modal,
             MediaLibrary,
             EditorContent,
-            EditorMenuBar,
-            EditorMenuBubble
+            // EditorMenuBubble
         },
 
         data() {
             return {
                 editor: new Editor({
                     extensions: [
-                        new BulletList(),
-                        new HardBreak(),
-                        new Heading({ levels: [1, 2, 3] }),
-                        new HorizontalRule(),
-                        new BulletList(),
-                        new OrderedList(),
-                        new ListItem(),
-                        new Link(),
-                        new Bold(),
-                        new Italic(),
-                        new Underline(),
-                        new Image(),
-                        new History(),
-                        new Iframe(),
-						new Table({
-							resizable: true,
-						}),
-						new TableHeader(),
-						new TableCell(),
-						new TableRow()
+                        StarterKit,
+                        Document,
+                        Paragraph,
+                        Text,
+                        ListItem,
+                        BulletList,
+                        // new HardBreak(),
+                        Heading.configure({
+                            levels: [1, 2, 3, 4],
+                        }),
+                        // new HorizontalRule(),
+                        // new BulletList(),
+                        OrderedList,
+                        // new Link(),
+                        // new Bold(),
+                        // new Italic(),
+                        // new Underline(),
+                        // new Image(),
+                        // new History(),
+                        // new Iframe(),
+						// new Table({
+						// 	resizable: true,
+						// }),
+						// new TableHeader(),
+						// new TableCell(),
+						// new TableRow()
                     ],
-                    onUpdate: (newContent) => {;
-                        this.content = newContent.getHTML();
+                    content: this.content,
+                    onUpdate: () => {
+                        this.content = this.editor.getHTML();
                     },
-                    content: this.content
                 }),
                 content: '',
                 linkUrl: null,
@@ -317,7 +331,7 @@
         mounted() {
             if (this.value) {    
                 this.content = this.value;
-                this.editor.setContent(this.content);
+                this.editor.commands.setContent(this.content);
             }
         },
 
