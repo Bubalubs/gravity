@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "npm run development -- --watch",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "development": "mix",
+    "dev": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "production": "mix --production",
+    "prod": "mix --production"
   },
   "repository": {
     "type": "git",
@@ -22,15 +23,16 @@
   },
   "homepage": "https://github.com/Bubalubs/gravity#readme",
   "devDependencies": {
-    "axios": "^0.21.1",
+    "axios": "^1.3.6",
     "bulma": "^0.9.1",
     "cross-env": "^7.0.3",
-    "laravel-mix": "^5.0.9",
+    "laravel-mix": "^6.0.49",
     "liquor-tree": "^0.2.70",
     "tiptap": "^1.31.0",
     "tiptap-extensions": "^1.34.0",
     "v-tooltip": "^2.1.2",
     "vue": "^2.6.12",
-    "vue-color": "^2.8.1"
+    "vue-color": "^2.8.1",
+    "vue-loader": "^15.10.0"
   }
 }
