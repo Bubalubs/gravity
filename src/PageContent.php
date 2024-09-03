@@ -59,7 +59,7 @@ class PageContent extends Model
             return $pageContent->save();
         }
 
-        $pageContent = new self();  
+        $pageContent = new self();
 
         $pageContent->page_id = 0;
 
@@ -89,7 +89,7 @@ class PageContent extends Model
     {
         $page = Page::where('name', $pageName)->first();
         if (!$page) {
-            return $pageName;
+            return null;
         }
 
         $pageNameParts = explode('.', $pageName);

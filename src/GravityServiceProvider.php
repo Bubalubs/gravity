@@ -20,7 +20,7 @@ class GravityServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
+
     }
 
     /**
@@ -65,6 +65,10 @@ class GravityServiceProvider extends ServiceProvider
                     return;
                 }
 
+                if (!PageContent::getPageContent($view->getName())) {
+                    return;
+                }
+
                 $content = PageContent::getPageContent($view->getName())->all();
 
                 $pageNameParts = explode('.', $view->getName());
@@ -77,7 +81,7 @@ class GravityServiceProvider extends ServiceProvider
                         return abort(404);
                     }
                 }
-                
+
                 if ($content && is_array($content)) {
                     $data['content'] = [];
 
@@ -94,7 +98,7 @@ class GravityServiceProvider extends ServiceProvider
 
                 $view->with($data);
             });
-            
+
             view()->composer('gravity::partials.sidebar', function ($view) {
                 $entities = Entity::all();
 
@@ -103,7 +107,7 @@ class GravityServiceProvider extends ServiceProvider
                     ->get();
 
                 $menuData = [];
-                
+
                 foreach ($pages as $page) {
                     $menuLink = [
                         'label' => $page->displayName,
